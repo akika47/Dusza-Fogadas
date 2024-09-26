@@ -1,0 +1,55 @@
+Table games { 
+  id integer pk 
+  organizerName varchar 
+  eventId integer 
+}
+
+Table event_details { 
+  eventId integer pk 
+  eventAmount integer 
+  participantAmount integer 
+}
+
+Table bets { 
+  id integer pk 
+  eventId integer 
+}
+
+Table bet_details { 
+  betId integer pk 
+  betAmount integer 
+}
+
+Table bet_participants { 
+  betId integer pk 
+  userId integer 
+  amount integer 
+}
+
+Table results { 
+  id integer pk 
+  userId integer 
+  eventId integer 
+  result integer 
+  multiplier float 
+}
+
+Table events { 
+  id integer pk 
+  eventName varchar 
+}
+
+Table users { 
+  id integer pk 
+  name varchar
+  points integer
+}
+
+Ref: games.eventId > events.id 
+Ref: games.eventId > event_details.eventId
+Ref: bets.eventId > events.id 
+Ref: bets.id > bet_details.betId 
+Ref: bet_participants.betId > bets.id 
+Ref: bet_participants.userId > users.id 
+Ref: results.eventId > events.id 
+Ref: results.userId > users.id 
