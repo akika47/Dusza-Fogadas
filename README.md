@@ -3,6 +3,7 @@
 
 Tervezett oldalak:
 login/register,
+meccsek listája oldal(le nem zárultak),
 fogadás,
 eredmények,
 szervezőknek esemény csináló,
