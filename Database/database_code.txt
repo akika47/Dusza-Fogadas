@@ -42,7 +42,9 @@ Table events {
 Table users { 
   id integer pk 
   name varchar
+  password varchar
   points integer
+  role integer
 }
 
 Ref: games.eventId > events.id 
