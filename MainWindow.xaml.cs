@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace WPF_MVVM_Template
+namespace WPF_Dusza
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
