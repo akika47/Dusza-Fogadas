@@ -8,6 +8,6 @@ namespace WPF_Dusza.Repo
 {
     public class SqlConnector
     {
-        readonly string _connectionString = ;
+        //readonly string _connectionString = ;
     }
 }

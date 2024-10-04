@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WPF_Dusza
+namespace WPF_Dusza.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for EventList.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class EventList : Window
     {
-        public MainWindow()
+        public EventList()
         {
             InitializeComponent();
         }
