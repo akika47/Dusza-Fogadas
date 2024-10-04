@@ -28,14 +28,6 @@
         <Label Content="Szorzók" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
         <Image Source="\Images\profilePic.png" Grid.Column="4"/>
 
-
-        <DataGrid x:Name="dtgEvents" Grid.Row="1" Grid.ColumnSpan="5" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn />
-                <DataGridTextColumn />
-                <DataGridTextColumn />
-                <DataGridTextColumn />
-            </DataGrid.Columns>
-        </DataGrid>
+        <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="5"/>
     </Grid>
 </Window>
