@@ -1,3 +1,4 @@
+
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -47,6 +48,7 @@ namespace WPF_Dusza.Repo
             await command.ExecuteNonQueryAsync();
 
         }
+
 
     }
 }
