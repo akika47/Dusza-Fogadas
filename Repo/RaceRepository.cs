@@ -41,7 +41,7 @@ namespace WPF_Dusza.Repo
             using MySqlCommand command = new(cmd, connection);
             await connection.OpenAsync();
             command.Parameters.AddWithValue("Username", user.Name);
-            command.Parameters.AddWithValue("Password", Hashing.HashPassword(user.Password));
+            command.Parameters.AddWithValue("Password", user.Password);
             command.Parameters.AddWithValue("Points", 100);
             command.Parameters.AddWithValue("Role", user.Role);
             await command.ExecuteNonQueryAsync();

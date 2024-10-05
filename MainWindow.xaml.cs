@@ -23,20 +23,16 @@ namespace WPF_Dusza
         void ValidateLogin(object sender, RoutedEventArgs e)
         {
             string Username = tb_UserName.Text, Password = Hashing.HashPassword(pb_Password.Password);
-            
+
             _user = _repo.GetAllUsers().FirstOrDefault(x => x.Name == Username && x.Password == Password);
-            if (_user == null) 
+            if (_user == null)
             {
                 MessageBox.Show("Hibás felhasználónév vagy jelszó");
                 return;
             }
         }
 
-        void RegisterUser(object sender, RoutedEventArgs e)
-        {
+        void RegisterUser(object sender, RoutedEventArgs e) => new RegistrationPage(_repo).ShowDialog();
 
-            new RegistrationPage(_repo).ShowDialog();
-            
-        }
     }
 }

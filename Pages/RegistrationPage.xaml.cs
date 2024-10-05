@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_Dusza.Models;
 using WPF_Dusza.Repo;
+using WPF_Dusza.Utils;
 
 namespace WPF_Dusza.Pages
 {
@@ -30,15 +31,27 @@ namespace WPF_Dusza.Pages
 
         async void RegisterUser()
         {
-            User newUser = new()
+            string Username = tb_UserName.Text, 
+                Password = pb_Password.Password,
+                Confirm = pb_Confirm.Password;
+            User user = new()
             {
-                Id = 1,
-                Name = "Test",
-                Password = "123",
+                Name = Username,
+                Password = Hashing.HashPassword(Password),
                 Points = 100,
-                Role = 0
+                Role = 2
             };
-            await _repo.RegisterUserAsync(newUser);
+            if (_repo.GetAllUsers().Any(x => x == user)) 
+            {
+                MessageBox.Show("Ez a felhasználó már létezik!\n");
+                return;
+            }
+            if (Password != Confirm) 
+            {
+                MessageBox.Show("A jelszavak nem egyeznek!\n");
+                return;
+            }
+            await _repo.RegisterUserAsync(user);
         }
     }
 }
