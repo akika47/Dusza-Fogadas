@@ -29,7 +29,7 @@ namespace WPF_Dusza.Pages
             _repo = repo;
         }
 
-        async void RegisterUser()
+        async void RegisterUser(object sender, RoutedEventArgs e)
         {
             string Username = tb_UserName.Text, 
                 Password = pb_Password.Password,

@@ -26,6 +26,6 @@
         <PasswordBox x:Name="pb_Password" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200"/>
         <Label Grid.Row="5" Content="Jelszó újra" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
         <PasswordBox x:Name="pb_Confirm" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200"/>
-        <Button Grid.Row="7" VerticalAlignment="Top" Content="Regisztrálás"/>
+        <Button Grid.Row="7" VerticalAlignment="Top" Content="Regisztrálás" Click="RegisterUser"/>
     </Grid>
 </Window>

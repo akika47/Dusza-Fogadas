@@ -30,6 +30,15 @@ namespace WPF_Dusza
                 MessageBox.Show("Hibás felhasználónév vagy jelszó");
                 return;
             }
+            //TODO: Átirányítani a megfelelő felületre
+            switch (_user.Role) 
+            {
+                case 0:
+                case 1:
+                case 2:
+                default:
+                    break;
+            }
         }
 
         void RegisterUser(object sender, RoutedEventArgs e) => new RegistrationPage(_repo).ShowDialog();
