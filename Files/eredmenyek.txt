@@ -1,0 +1,7 @@
+Lajos és Bettina programjának futása
+Lajos;programfutásának sebessége;4;3.5
+Lajos;programjának kimenete;Hello World;6
+Lajos;programja hibát dob;hamis;0
+Bettina;programfutásának sebessége;4;0
+Bettina;programjának kimenete;Segment fault;0
+Bettina;programja hibát dob;igaz;0

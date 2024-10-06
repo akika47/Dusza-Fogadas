@@ -18,6 +18,5 @@ namespace WPF_Dusza.Repo
         {
             return new MySqlConnection(_connectionString);
         }
-
     }
 }
