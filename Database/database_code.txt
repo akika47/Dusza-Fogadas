@@ -1,20 +1,20 @@
 Table games { 
   id integer pk 
+  name varchar
   organizerName varchar 
-  eventId integer 
+
 }
 
-Table event_details { 
-  eventId integer pk 
-  eventAmount integer 
-  participantAmount integer 
-}
 
 Table bets { 
   id integer pk 
-  eventId integer 
+  eventId integer
+  userId integer
+  participantId integer
+  prediction varchar 
+  betAmount integer
 }
-
+/*
 Table bet_details { 
   betId integer pk 
   betAmount integer 
@@ -25,18 +25,30 @@ Table bet_participants {
   userId integer 
   amount integer 
 }
-
+*/
 Table results { 
   id integer pk 
-  userId integer 
+
   eventId integer 
-  result integer 
-  multiplier float 
+  result varchar
+  participantId integer
 }
 
+Table participants {
+  id integer pk
+  name varchar
+  gameId integer
+}
+Table multiplier {
+  id integer pk
+  amount double
+  eventId integer
+  participantId integer
+}
 Table events { 
   id integer pk 
   eventName varchar 
+  gameId integer
 }
 
 Table users { 
@@ -46,12 +58,12 @@ Table users {
   points integer
   role integer
 }
-
-Ref: games.eventId > events.id 
-Ref: games.eventId > event_details.eventId
+ref: bets.userId > users.id
+ref: results.participantId > participants.id
+ref: bets.participantId > participants.id
+ref: multiplier.eventId > events.id
+ref: multiplier.participantId > participants.id
+Ref: participants.gameId > games.id
+Ref: events.gameId > games.id
 Ref: bets.eventId > events.id 
-Ref: bets.id > bet_details.betId 
-Ref: bet_participants.betId > bets.id 
-Ref: bet_participants.userId > users.id 
 Ref: results.eventId > events.id 
-Ref: results.userId > users.id 
