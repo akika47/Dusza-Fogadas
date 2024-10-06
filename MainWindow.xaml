@@ -7,6 +7,26 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="155"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Content="Felhasználónév" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <TextBox x:Name="tb_UserName" Grid.Row="2" VerticalAlignment="Center" Margin="5"/>
+            <Label Content="Jelszó" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <StackPanel Grid.Row="4">
+                <PasswordBox x:Name="pb_Password" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Center" Width="140" Margin="5"/>
+                <Button Content="Belépés" Margin="5" Click="ValidateLogin"/>
+                <Button Content="Regisztrálás" Margin="5" Click="RegisterUser"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
