@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 using WPF_Dusza.Models;
 using WPF_Dusza.Utils;
 
@@ -35,19 +36,36 @@ namespace WPF_Dusza.Repo
         }
         public async Task RegisterUserAsync(User user) 
         {
-            
-
-            string cmd = "INSERT into users VALUES(?,?,?,?)";
+            string cmd = "INSERT into users(name,password,points,role) VALUES(@username,@password,@points,@role)";
             using MySqlConnection connection = GetConnection();
             using MySqlCommand command = new(cmd, connection);
             await connection.OpenAsync();
-            command.Parameters.AddWithValue("Username", user.Name);
-            command.Parameters.AddWithValue("Password", user.Password);
-            command.Parameters.AddWithValue("Points", 100);
-            command.Parameters.AddWithValue("Role", user.Role);
+            command.Parameters.AddWithValue("@username", user.Name);
+            command.Parameters.AddWithValue("@password", user.Password);
+            command.Parameters.AddWithValue("@points", 100);
+            command.Parameters.AddWithValue("@role", user.Role);
             await command.ExecuteNonQueryAsync();
+        }
+        public async Task ModifyUserAsync(User user)
+        {
+            string cmd = "UPDATE TABLE users SET name=@name, password=@password, points=@points role=@role"
+                + $"WHERE id={user.Id}";
+            using MySqlConnection connection = GetConnection();
+            using MySqlCommand command = new(cmd, connection);
+            await connection.OpenAsync();
+            command.Parameters.AddWithValue("@name", user.Name);
+            command.Parameters.AddWithValue("@password", user.Password);
+            command.Parameters.AddWithValue("@points", user.Points);
+            command.Parameters.AddWithValue("@role", user.Role);
 
         }
-
+        public IEnumerable<Game> GetGames()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task PlaceBetAsync(User user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
