@@ -67,5 +67,9 @@ namespace WPF_Dusza.Repo
         {
             throw new NotImplementedException();
         }
+        public async Task CreateNewGameAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
