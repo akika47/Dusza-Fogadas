@@ -12,5 +12,6 @@ namespace WPF_Dusza.Models
         public string OrganizerName { get; set; }
         public string FirstParticipant { get; set; }
         public string SecondParticipant { get; set; }   
+        public bool IsGameOver { get; set; }
     }
 }

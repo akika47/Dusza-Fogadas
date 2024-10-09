@@ -61,15 +61,38 @@ namespace WPF_Dusza.Repo
         }
         public IEnumerable<Game> GetGames()
         {
-            throw new NotImplementedException();
+            string cmd = "SELECT g.name AS game_name, u.name AS organizer_name,  p.name AS participant_name, g.status AS game_status" +
+                "FROM  games g  JOIN users u ON g.userId = u.id JOIN participants p ON g.id = p.gameId ORDER BY g.name;";
+            using MySqlConnection conn = GetConnection();
+            using MySqlCommand command = new(cmd, conn);
+            conn.Open();
+            using MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read()) 
+            {
+                yield return new Game
+                {
+                    Name = reader.GetString(0),
+                    OrganizerName = reader.GetString(1),
+                    FirstParticipant = reader.GetString(2),
+                    SecondParticipant = reader.GetString(3),
+                    IsGameOver = reader.GetBoolean(4),
+                };
+            }
         }
         public async Task PlaceBetAsync(User user)
         {
-            throw new NotImplementedException();
+            string cmd = "";
+            using MySqlConnection conn = GetConnection();
+            using MySqlCommand command = new(cmd, conn);
+            await conn.OpenAsync();
         }
         public async Task CreateNewGameAsync()
         {
-            throw new NotImplementedException();
+            string cmd = "";
+            using MySqlConnection conn = GetConnection();
+            using MySqlCommand command = new(cmd, conn);
+            await conn.OpenAsync();
+
         }
     }
 }
