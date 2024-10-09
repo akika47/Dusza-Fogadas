@@ -10,31 +10,26 @@
         >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition />
+            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
 
-        <Image Source="\Images\profilePic.png" Grid.Column="3" Height="100" VerticalAlignment="Top" Width="100" HorizontalAlignment="Right" Margin="10"/>
 
-        <StackPanel Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" >
-            <Label Content="Játék neve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-            <Label Content="Szervező neve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        </StackPanel>
+        <Label Content="Játék neve" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+        <Label Content="Szervező neve" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+        <Label Content="Játékosok neve" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+        <Label Content="Szorzók" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+        <Label Content="Eredmények" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+        <Image Source="\Images\profilePic.png" Grid.Column="5"/>
 
-        <DataGrid x:Name="dtgResults" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" AutoGenerateColumns="False" MinColumnWidth="250" ColumnHeaderHeight="50">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Esemény neve"/>
-                <DataGridTextColumn Header="Saját Tipp"/>
-                <DataGridTextColumn Header="Eredmény"/>
-            </DataGrid.Columns>
-        </DataGrid>
-
+        <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6"/>
     </Grid>
 </Window>
