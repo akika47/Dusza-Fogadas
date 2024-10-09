@@ -11,7 +11,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2.5*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -19,15 +19,17 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
+         <!--testing-->
+        <Image Source="\Images\profilePic.png" Grid.Column="5" Height="100" VerticalAlignment="Top" Width="100" HorizontalAlignment="Right" Margin="10"/>
 
         <Label Content="Játék neve" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
         <Label Content="Szervező neve" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <Label Content="Játékosok neve" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <Label Content="Szorzók" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <Image Source="\Images\profilePic.png" Grid.Column="4"/>
+        <Label Content="1. játékos" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+        <Label Content="2. játékos" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+        <Label Content="Állapot" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
 
-        <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="5"/>
+        <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6"/>
     </Grid>
 </Window>
