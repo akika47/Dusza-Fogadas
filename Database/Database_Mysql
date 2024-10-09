@@ -1,0 +1,57 @@
+-- Create the database
+CREATE DATABASE betting;
+
+-- Use the database
+USE betting;
+
+-- Create the tables
+CREATE TABLE games (
+  id INT PRIMARY KEY,
+  name VARCHAR(255),
+  userId INT,
+  status INT,
+  FOREIGN KEY (userId) REFERENCES users(id)
+);
+
+CREATE TABLE bets (
+  id INT PRIMARY KEY,
+  eventId INT,
+  userId INT,
+  participantId INT,
+  prediction VARCHAR(255),
+  betAmount INT,
+  FOREIGN KEY (userId) REFERENCES users(id),
+  FOREIGN KEY (eventId) REFERENCES events(id),
+  FOREIGN KEY (participantId) REFERENCES participants(id)
+);
+
+CREATE TABLE results (
+  id INT PRIMARY KEY,
+  eventId INT,
+  result VARCHAR(255),
+  participantId INT,
+  FOREIGN KEY (eventId) REFERENCES events(id),
+  FOREIGN KEY (participantId) REFERENCES participants(id)
+);
+
+CREATE TABLE participants (
+  id INT PRIMARY KEY,
+  name VARCHAR(255),
+  gameId INT,
+  FOREIGN KEY (gameId) REFERENCES games(id)
+);
+
+CREATE TABLE events (
+  id INT PRIMARY KEY,
+  eventName VARCHAR(255),
+  gameId INT,
+  FOREIGN KEY (gameId) REFERENCES games(id)
+);
+
+CREATE TABLE users (
+  id INT PRIMARY KEY,
+  name VARCHAR(255),
+  password VARCHAR(255),
+  points INT,
+  role INT
+);
