@@ -24,37 +24,53 @@ namespace WPF_Dusza
     /// </summary>
     public partial class MainWindow : Window
     {
-        RaceRepository _repo;
-        // TODO: átadni _usert a többi oldalhoz
+        BettingRepository _repo;
         User? _user;
+        Window _currentWindow;
         public MainWindow()
         {
             InitializeComponent();
             _repo = new();
+            _user = null;
         }
 
-        void ValidateLogin(object sender, RoutedEventArgs e)
+        async void ValidateLogin(object sender, RoutedEventArgs e)
         {
-            string Username = tb_UserName.Text, Password = Hashing.HashPassword(pb_Password.Password);
-
-            _user = _repo.GetAllUsers().FirstOrDefault(x => x.Name == Username && x.Password == Password);
-            if (_user == null)
+            string Username = tb_UserName.Text, 
+            Password = Hashing.HashPassword(pb_Password.Password);
+            if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password)) 
             {
-                MessageBox.Show("Hibás felhasználónév vagy jelszó");
+                WindowUtils.DisplayErrorMessage("Hibás felhasználónév vagy jelszó");
                 return;
             }
-            //TODO: Átirányítani a megfelelő felületre
+            _user = await _repo.UserRepository.GetAllUsersAsync().FirstOrDefaultAsync(x => x.Name == Username && x.Password == Password);
+            if (_user == null)
+            {
+                WindowUtils.DisplayErrorMessage("Hibás felhasználónév vagy jelszó");
+                return;
+            }
             switch (_user.Role) 
             {
                 case 0:
+                    //user is admin
+                    _currentWindow = new AdminPage();
+                    break;
                 case 1:
+                    //user is organizer
+                    _currentWindow = new CreateEvent(); 
+                    break;
                 case 2:
-                default:
+                    //user is betting
+                    _currentWindow = new EventList(_repo, _user);
                     break;
             }
+            WindowUtils.ShowOtherWindow(this, _currentWindow);
         }
 
-        void RegisterUser(object sender, RoutedEventArgs e) => new RegistrationPage(_repo).ShowDialog();
-
+        void RegisterUser(object sender, RoutedEventArgs e) 
+        {
+            _currentWindow = new RegistrationPage(_repo);
+            WindowUtils.ShowOtherWindow(this, _currentWindow);
+        }
     }
 }

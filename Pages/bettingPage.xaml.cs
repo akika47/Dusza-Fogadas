@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF_Dusza.Models;
 
 namespace WPF_Dusza.Pages
 {
@@ -19,9 +20,16 @@ namespace WPF_Dusza.Pages
 	/// </summary>
 	public partial class bettingPage : Window
 	{
-		public bettingPage()
+		Game SelectedGame { get; set; }
+		public bettingPage(Game game)
 		{
 			InitializeComponent();
+			SelectedGame = game;
+		}
+
+		public async void PlaceBet(object sender, RoutedEventArgs e)
+		{
+			await Task.Delay(100);
 		}
 	}
 }

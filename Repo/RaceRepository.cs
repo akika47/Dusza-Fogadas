@@ -3,74 +3,14 @@ using WPF_Dusza.Models;
 
 namespace WPF_Dusza.Repo
 {
-    public sealed class RaceRepository : RepositoryBase
+    public sealed class BettingRepository  
     {
-            // LINQ-s lekérdezések
-
-        public IEnumerable<User> GetAllUsers()
-        {
-            string commandstr = "SELECT * FROM users";
-            using MySqlConnection connection = GetConnection();
-            using MySqlCommand command = new(commandstr, connection);
-            connection.Open();
-            using MySqlDataReader reader = command.ExecuteReader();
-            while (reader.Read()) 
-            {
-                yield return new User 
-                { 
-                    Id = reader.GetInt32(0),
-                    Name = reader.GetString(1),
-                    Password = reader.GetString(2),
-                    Role = reader.GetInt32(3)
-                };
-            }
-        }
-        public async Task RegisterUserAsync(User user) 
-        {
-            string cmd = "INSERT into users(name,password,points,role) VALUES(@username,@password,@points,@role)";
-            using MySqlConnection connection = GetConnection();
-            using MySqlCommand command = new(cmd, connection);
-            await connection.OpenAsync();
-            command.Parameters.AddWithValue("@username", user.Name);
-            command.Parameters.AddWithValue("@password", user.Password);
-            command.Parameters.AddWithValue("@points", 100);
-            command.Parameters.AddWithValue("@role", user.Role);
-            await command.ExecuteNonQueryAsync();
-        }
-        public async Task ModifyUserAsync(User user)
-        {
-            string cmd = "UPDATE TABLE users SET name=@name, password=@password, points=@points role=@role"
-                + $"WHERE id={user.Id}";
-            using MySqlConnection connection = GetConnection();
-            using MySqlCommand command = new(cmd, connection);
-            await connection.OpenAsync();
-            command.Parameters.AddWithValue("@name", user.Name);
-            command.Parameters.AddWithValue("@password", user.Password);
-            command.Parameters.AddWithValue("@points", user.Points);
-            command.Parameters.AddWithValue("@role", user.Role);
-
-        }
-        public IEnumerable<Game> GetGames()
-        {
-            string cmd = "SELECT g.id as game_id  g.name AS game_name, u.name AS organizer_name,  p.name AS participant_name, g.status AS game_status" +
-                "FROM  games g  JOIN users u ON g.userId = u.id JOIN participants p ON g.id = p.gameId ORDER BY g.name;";
-            using MySqlConnection conn = GetConnection();
-            using MySqlCommand command = new(cmd, conn);
-            conn.Open();
-            using MySqlDataReader reader = command.ExecuteReader();
-            while (reader.Read()) 
-            {
-                yield return new Game
-                {
-                    Id = reader.GetInt32(0),
-                    Name = reader.GetString(1),
-                    OrganizerName = reader.GetString(2),
-                    FirstParticipant = reader.GetString(3),
-                    SecondParticipant = reader.GetString(4),
-                    IsGameOver = reader.GetBoolean(5),
-                };
-            }
-        }
+        UserRepo _userRepo = new UserRepo();
+        GameRepo _gameRepo = new GameRepo();
+        public UserRepo UserRepository { get => _userRepo; }
+        public GameRepo GameRepository { get => _gameRepo; }
+        /*
+        TODO: Move these methods to their respective class
         public async Task PlaceBetAsync(Bet bet)
         {
             string cmd = "INSERT INTO  bets(eventId,userId,participantId,prediction,betAmount) " +
@@ -99,9 +39,82 @@ namespace WPF_Dusza.Repo
             }
 
         }
+        */
+    }
+
+    public sealed class UserRepo : RepositoryBase
+    {
+        public async IAsyncEnumerable<User> GetAllUsersAsync()
+        {
+            cmd = "SELECT * FROM users";
+            using MySqlConnection connection = GetConnection();
+            using MySqlCommand command = new(cmd, connection);
+            await connection.OpenAsync();
+            using MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync()) 
+            {
+                yield return new User 
+                { 
+                    Id = reader.GetInt32(0),
+                    Name = reader.GetString(1),
+                    Password = reader.GetString(2),
+                    Role = reader.GetInt32(3)
+                };
+            }
+        }
+        public async Task RegisterUserAsync(User user)
+        {
+            cmd = "INSERT into users(name,password,points,role) VALUES(@username,@password,@points,@role)";
+            using MySqlConnection connection = GetConnection();
+            using MySqlCommand command = new(cmd, connection);
+            await connection.OpenAsync();
+            command.Parameters.AddWithValue("@username", user.Name);
+            command.Parameters.AddWithValue("@password", user.Password);
+            command.Parameters.AddWithValue("@points", 100);
+            command.Parameters.AddWithValue("@role", user.Role);
+            await command.ExecuteNonQueryAsync();
+        }
+        public async Task ModifyUserAsync(User user)
+        {
+            cmd = "UPDATE TABLE users SET name=@name, password=@password, points=@points role=@role"
+                + $"WHERE id={user.Id}";
+            using MySqlConnection connection = GetConnection();
+            using MySqlCommand command = new(cmd, connection);
+            await connection.OpenAsync();
+            command.Parameters.AddWithValue("@name", user.Name);
+            command.Parameters.AddWithValue("@password", user.Password);
+            command.Parameters.AddWithValue("@points", user.Points);
+            command.Parameters.AddWithValue("@role", user.Role);
+        }
+
+
+    }
+    public sealed class GameRepo : RepositoryBase 
+    {
+       public async IAsyncEnumerable<Game> GetGamesAsync()
+        {
+            cmd = "SELECT g.id as game_id  g.name AS game_name, u.name AS organizer_name,  p.name AS participant_name, g.status AS game_status" +
+                "FROM  games g  JOIN users u ON g.userId = u.id JOIN participants p ON g.id = p.gameId ORDER BY g.name;";
+            using MySqlConnection conn = GetConnection();
+            using MySqlCommand command = new(cmd, conn);
+            await conn.OpenAsync();
+            using MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync()) 
+            {
+                yield return new Game
+                {
+                    Id = reader.GetInt32(0),
+                    Name = reader.GetString(1),
+                    OrganizerName = reader.GetString(2),
+                    FirstParticipant = reader.GetString(3),
+                    SecondParticipant = reader.GetString(4),
+                    IsGameOver = reader.GetBoolean(5),
+                };
+            }
+        }
         public async Task CreateNewGameAsync(User user)
         {
-            string cmd = "INSERT INTO games(name, userId, status) VALUES(@name,@userId,@status) ";
+            cmd = "INSERT INTO games(name, userId, status) VALUES(@name,@userId,@status) ";
             using MySqlConnection conn = GetConnection();
             using MySqlCommand command = new(cmd, conn);
             await conn.OpenAsync();
@@ -112,7 +125,9 @@ namespace WPF_Dusza.Repo
         }
         public async Task CloseGameAsync(Game game)
         {
+            await Task.Delay(100);
             throw new NotImplementedException();
         }
+
     }
 }

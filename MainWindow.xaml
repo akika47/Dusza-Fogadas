@@ -19,7 +19,7 @@
                 <RowDefinition Height="40"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Image Source="\Images\profilePic.png"/>
+            <Image Source="/profilePic.png"/>
             <Label Content="Felhasználónév" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
             <TextBox x:Name="tb_UserName" Grid.Row="2" VerticalAlignment="Center" Margin="5"/>
             <Label Content="Jelszó" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
