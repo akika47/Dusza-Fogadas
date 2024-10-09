@@ -129,5 +129,21 @@ namespace WPF_Dusza.Repo
             throw new NotImplementedException();
         }
 
+        }
+        public async Task CreateNewGameAsync(User user)
+        {
+            string cmd = "INSERT INTO games(name, userId, status) VALUES(@name,@userId,@status) ";
+            using MySqlConnection conn = GetConnection();
+            using MySqlCommand command = new(cmd, conn);
+            await conn.OpenAsync();
+            command.Parameters.AddWithValue("@name", "");
+            command.Parameters.AddWithValue("@userId", user.Id);
+            command.Parameters.AddWithValue("@status", 0);
+            await command.ExecuteNonQueryAsync();
+        }
+        public async Task CloseGameAsync(Game game)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
