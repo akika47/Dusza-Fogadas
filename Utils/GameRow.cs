@@ -13,5 +13,10 @@ namespace WPF_Dusza.Utils
         public string OrganizerName { get; set; }
         public string Participants { get; set; }
         public string Events { get; set; }
+        public ICommand CreateNewRowCommand { get; set; }
+        public GameRow()
+        {
+           
+        }
     }
 }

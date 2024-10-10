@@ -1,5 +1,4 @@
 using MySql.Data.MySqlClient;
-using System.Security.Cryptography;
 using WPF_Dusza.Models;
 using WPF_MVVM_Template.Models;
 
@@ -15,11 +14,6 @@ namespace WPF_Dusza.Repo
         public GameRepo GameRepository { get => _gameRepo; }
         public BetRepo BetRepository { get => _betRepo; }
         public EventRepo EventRepository { get => _eventRepo; }
-        /*
-        TODO: Move these methods to their respective class
-        
-        
-        */
     }
 
     public sealed class UserRepo : RepositoryBase
@@ -172,5 +166,25 @@ namespace WPF_Dusza.Repo
             }
 
         }
+    }
+    public sealed class ResultRepo : RepositoryBase 
+    {
+        public async IAsyncEnumerable<Result> GetResultsAsync(Game game)
+        {
+            cmd = $"";
+            using MySqlConnection conn = GetConnection();
+            using MySqlCommand command = new(cmd, conn);
+            await conn.OpenAsync();
+            using MySqlDataReader reader = command.ExecuteReader();
+            while(await reader.ReadAsync())
+            {
+                Result result = new Result
+                {
+
+                };
+                yield return result;
+            }
+        }
+
     }
 }

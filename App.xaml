@@ -10,6 +10,7 @@
                 <TextBox Text="{Binding OrganizerName}"/>
                 <TextBox Text="{Binding Participants}"/>
                 <TextBox Text="{Binding Events}"/>
+                <Button Command="{Binding CreateNewRowCommand}" />
             </StackPanel>
         </DataTemplate>
     </Application.Resources>

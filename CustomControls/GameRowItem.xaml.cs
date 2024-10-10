@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,28 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPF_Dusza.Repo;
-using WPF_Dusza.Utils;
 
-namespace WPF_Dusza.Pages
+namespace WPF_Dusza.CustomControls
 {
     /// <summary>
-    /// Interaction logic for CreateEvent.xaml
+    /// Interaction logic for GameRowItem.xaml
     /// </summary>
-    public partial class CreateEvent : Window
+    public partial class GameRowItem : UserControl
     {
-        public GameRow Row { get; set; }
-        BettingRepository _repo;
-        public CreateEvent(BettingRepository repo)
+        public GameRowItem()
         {
             InitializeComponent();
-            _repo = repo;
-
-            Row = new();
         }
-
-        async void CreateEventAsync()
+        void Handle_Click(object sender, RoutedEventArgs e)
         {
 
         }

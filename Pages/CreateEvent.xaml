@@ -31,6 +31,6 @@
         <Label Content="Események" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
         <Image Source="\Images\profilePic.png" Grid.Column="5" Height="100" Width="100"/>
 
-        <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6" ItemsSource="{Binding Rows}" ItemTemplate="{StaticResource GameRowItemTemplate}"/>
+        <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6"  ItemTemplate="{StaticResource GameRowItemTemplate}"/>
     </Grid>
 </Window>
