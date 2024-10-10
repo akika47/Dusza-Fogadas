@@ -26,18 +26,11 @@
 
         <Label Content="Játék neve" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
         <Label Content="Szervező neve" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <Label Content="1. játékos" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <Label Content="2. játékos " Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <Label Content="Események" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+        <Label Content="Játékosok" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+       
+        <Label Content="Események" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
         <Image Source="\Images\profilePic.png" Grid.Column="5" Height="100" Width="100"/>
 
-        <TextBox x:Name="txtGameName" Grid.Row="1" Grid.Column="0" Width="120" Height="60" />
-        <TextBox x:Name="txtOrganizerName" Grid.Row="1" Grid.Column="1" Width="120" Height="60" />
-        <TextBox x:Name="txtPlayerNames" Grid.Row="1" Grid.Column="2" Width="120" Height="60" />
-        <TextBox x:Name="txtMultiplier"  Grid.Row="1" Grid.Column="3" Width="120" Height="60" />
-        <TextBox x:Name="txtEvent" Grid.Row="1" Grid.Column="4" Width="120" Height="60" />
-        <Button x:Name="btnCreateEvent" Grid.Row="1" Grid.Column="5" Width="120" Height="60" Content="Új meccs felvevése" Click="btnCreateEvent_Click"/>
-
-        <ListView x:Name="lvEvents" Grid.Row="2" Grid.ColumnSpan="6"/>
+        <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6" ItemsSource="{Binding Rows}" ItemTemplate="{StaticResource GameRowItemTemplate}"/>
     </Grid>
 </Window>

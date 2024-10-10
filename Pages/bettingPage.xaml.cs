@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_Dusza.Models;
+using WPF_Dusza.Repo;
+using WPF_Dusza.Utils;
+using WPF_MVVM_Template.Models;
 
 namespace WPF_Dusza.Pages
 {
@@ -21,15 +24,51 @@ namespace WPF_Dusza.Pages
 	public partial class bettingPage : Window
 	{
 		Game SelectedGame { get; set; }
-		public bettingPage(Game game)
+		BettingRepository _repo;
+		User? _currentUser;
+		Event _selectedEvent;
+		Participant _selectedParticipant;
+		public bettingPage(Game game, BettingRepository repo, User? user)
 		{
 			InitializeComponent();
 			SelectedGame = game;
+			_repo = repo;
+			_currentUser = user;
+			this.Loaded += async (o, e) => await FillComboboxes();
+			cbxEvents.MouseDoubleClick += SelectEvent;
 		}
 
+        private void SelectEvent(object sender, MouseButtonEventArgs e)
+        {
+            if(sender is ComboBoxItem item)
+			{
+				_selectedEvent = (Event)item.Content;
+			}
+        }
+
+        async Task FillComboboxes()
+		{
+			List<Event> events = await _repo.EventRepository.GetEventsAsync(SelectedGame).ToListAsync();
+			events.ForEach(e => cbxEvents.Items.Add(e));
+			 SelectedGame.Participants.ForEach(x => cbxParticipants.Items.Add(x));
+		}
 		public async void PlaceBet(object sender, RoutedEventArgs e)
 		{
-			await Task.Delay(100);
+			int betAmount;
+			if(!int.TryParse(txtBetAmount.Text, out betAmount))
+			{
+				WindowUtils.DisplayErrorMessage("Hiba, a pontok csak számok lehetnek");
+				return;
+			}
+			Bet bet = new Bet
+			{
+				EventId = _selectedEvent.Id,
+				UserID = _currentUser!.Id,
+				ParticipantId = _selectedParticipant!.Id,
+				Prediction = txtPrediction.Text,
+				BetAmount = betAmount
+			};
+			await _repo.BetRepository.PlaceBetAsync(bet);
 		}
 	}
 }

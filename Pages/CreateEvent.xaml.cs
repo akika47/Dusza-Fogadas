@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF_Dusza.Utils;
 
 namespace WPF_Dusza.Pages
 {
@@ -20,18 +22,14 @@ namespace WPF_Dusza.Pages
     /// </summary>
     public partial class CreateEvent : Window
     {
+        public ObservableCollection<GameRow> Rows { get; set; } = [];
         public CreateEvent()
         {
             InitializeComponent();
+            Rows = [];
+
         }
 
-        private void btnCreateEvent_Click(object sender, RoutedEventArgs e)
-        {
-            string eventName = txtGameName.Text;
-            string organizerName = txtOrganizerName.Text;
-            string player1Name = txtPlayerNames.Text.Split('-')[0];
-            string player2Name = txtPlayerNames.Text.Split('-')[1];
-            int multiplier = int.Parse(txtMultiplier.Text);
-        }
+        
     }
 }

@@ -8,49 +8,59 @@
         Title="EventList" Height="450" Width="800"
         Background="darkGray"
         >
-    <Grid>
+    <Grid Grid.IsSharedSizeScope="True">
         <Grid.RowDefinitions>
-            <RowDefinition />
+            <RowDefinition Height="75"/>
             <RowDefinition Height="2.5*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition SharedSizeGroup="A" Width="133"/>
+            <ColumnDefinition SharedSizeGroup="A"/>
+            <ColumnDefinition SharedSizeGroup="A"/>
+            <ColumnDefinition SharedSizeGroup="A"/>
+            <ColumnDefinition SharedSizeGroup="A"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
          <!--testing-->
         <Image Source="/Pages/profilePic.png" Grid.Column="5" Height="50" VerticalAlignment="Top" Width="100" HorizontalAlignment="Right" Margin="10">
             <Image.ContextMenu>
                 <ContextMenu>
-                    <MenuItem x:Name="mi_logout" Header="Kijelentkezés" Click="Logout"/>
+                    <MenuItem x:Name="mi_logout" Header="Kijelentkezés"/>
                 </ContextMenu>
             </Image.ContextMenu>
         </Image>
-
-        <Label Content="Játék neve" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <Label Content="Szervező neve" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <Label Content="1. játékos" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <Label Content="2. játékos" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <Label Content="Állapot" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-
-        <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6">
+        <StackPanel Grid.Column="4">
+            <Label Content="{Binding CurrentUser.Name}"/>
+            <Label Content="{Binding CurrentUser.Points}"/>
+        </StackPanel>
+    
+        <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6" >
             <ListView.View>
-                <GridView AllowsColumnReorder="False" >
-                    <GridViewColumn Header="Játék neve" Width="160" 
-                                    DisplayMemberBinding="{Binding Games.Name}"/>
-                    <GridViewColumn Header="Szervező neve" Width="160" 
-                                    DisplayMemberBinding="{Binding Games.OrganizerName}"/>
-                    <GridViewColumn Header="1. játékos" Width="160"
-                                    DisplayMemberBinding="{Binding Games.FirstParticipant}"/>
-                    <GridViewColumn Header="2. játékos" Width="160"
-                                    DisplayMemberBinding="{Binding Games.SecondParticipant}"/>
-                    <GridViewColumn Header="Állapot" Width="160"
-                                    DisplayMemberBinding="{Binding Games.Status}"/>
+                <GridView>
+                    <GridViewColumn Header="Játék neve" Width="132"/>
+                    <GridViewColumn Header="Szervező neve" Width="132"/>
+                    <GridViewColumn Header="Játékosok" Width="132"/>
+                    <GridViewColumn Header="Állapot" Width="132"/>
                 </GridView>
             </ListView.View>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition SharedSizeGroup="A" />
+                            <ColumnDefinition SharedSizeGroup="A" />
+                            <ColumnDefinition SharedSizeGroup="A" />
+                            <ColumnDefinition SharedSizeGroup="A" />
+                            <ColumnDefinition SharedSizeGroup="A" />
+                            <ColumnDefinition SharedSizeGroup="A" />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{Binding Games.Name}"/>
+                        <Label Content="{Binding Games.OrganizerName}"/>
+                        <Label Content="{Binding Games.Participants}"/>
+                        <Label Content="{Binding Games.IsGameOver}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </Grid>
 </Window>

@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:WPF_Dusza"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        
+        <DataTemplate x:Key="GameRowItemTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding GameName}"/>
+                <TextBox Text="{Binding OrganizerName}"/>
+                <TextBox Text="{Binding Participants}"/>
+                <TextBox Text="{Binding Events}"/>
+            </StackPanel>
+        </DataTemplate>
     </Application.Resources>
 </Application>

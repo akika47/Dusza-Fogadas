@@ -24,6 +24,8 @@ namespace WPF_Dusza.Pages
     {
         BettingRepository _repo;
         User? _currentUser;
+        Window _window;
+        public User? CurrentUser { get => _currentUser; }
         public List<Game> Games { get; set; }
         public EventList(BettingRepository repo, User? user)
         {
@@ -43,8 +45,9 @@ namespace WPF_Dusza.Pages
             if(sender is ListViewItem item)
             {
                 Game selectedGame = (Game)item.Content ?? throw new Exception("Somehow this is null");
-                Window PlaceBetWindow = new bettingPage(selectedGame);
-                WindowUtils.ShowOtherWindow(this, PlaceBetWindow);
+                if(selectedGame.IsGameOver) _window = new eventResults(selectedGame);
+                else _window = new bettingPage(selectedGame, _repo, _currentUser);
+                WindowUtils.ShowOtherWindow(this, _window);
             }
         }
     }

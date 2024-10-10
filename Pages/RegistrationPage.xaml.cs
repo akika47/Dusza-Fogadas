@@ -26,7 +26,7 @@ namespace WPF_Dusza.Pages
             {
                 Name = Username,
                 Password = Hashing.HashPassword(Password),
-                Points = 100,
+                Points = 50,
                 Role = 2
             };
             if (await _repo.UserRepository.GetAllUsersAsync().AnyAsync(x => x == user)) 
