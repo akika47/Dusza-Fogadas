@@ -24,5 +24,9 @@ namespace WPF_Dusza.Utils
             user = null;
             window.Close();
         }
+        public static void ExitApp()
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

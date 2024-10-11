@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WPF_Dusza.Utils;
-using WPF_MVVM_Template.Models;
-
+﻿using WPF_Dusza.Utils;
 namespace WPF_Dusza.Models
 {
     public record class Game

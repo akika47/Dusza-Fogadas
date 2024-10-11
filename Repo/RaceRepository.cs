@@ -1,6 +1,6 @@
 using MySql.Data.MySqlClient;
 using WPF_Dusza.Models;
-using WPF_MVVM_Template.Models;
+using WPF_Dusza.Models;
 
 namespace WPF_Dusza.Repo
 {
@@ -32,7 +32,8 @@ namespace WPF_Dusza.Repo
                     Id = reader.GetInt32(0),
                     Name = reader.GetString(1),
                     Password = reader.GetString(2),
-                    Role = reader.GetInt32(3)
+                    Points = reader.GetInt32(3),
+                    Role = reader.GetInt32(4)
                 };
             }
         }

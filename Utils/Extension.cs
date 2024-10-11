@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using WPF_MVVM_Template.Models;
+using WPF_Dusza.Models;
 
 namespace WPF_Dusza.Utils
 {

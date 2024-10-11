@@ -57,7 +57,7 @@ namespace WPF_Dusza
                     break;
                 case 1:
                     //user is organizer
-                    _currentWindow = new CreateEvent(); 
+                    _currentWindow = new CreateEvent(_repo); 
                     break;
                 case 2:
                     //user is betting

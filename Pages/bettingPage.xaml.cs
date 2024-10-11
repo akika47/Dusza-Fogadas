@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using WPF_Dusza.Models;
 using WPF_Dusza.Repo;
 using WPF_Dusza.Utils;
-using WPF_MVVM_Template.Models;
+using WPF_Dusza.Models;
 
 namespace WPF_Dusza.Pages
 {
