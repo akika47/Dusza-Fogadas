@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPF_Dusza.Pages"
         mc:Ignorable="d"
         Title="EventList" Height="450" Width="800"
-        Background="darkGray"
+        Background="Gray"
         >
     <Grid Grid.IsSharedSizeScope="True">
         <Grid.RowDefinitions>
@@ -21,7 +21,6 @@
             <ColumnDefinition SharedSizeGroup="A"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-         <!--testing-->
         <Image Source="/Pages/profilePic.png" Grid.Column="5" Height="50" VerticalAlignment="Top" Width="100" HorizontalAlignment="Right" Margin="10">
             <Image.ContextMenu>
                 <ContextMenu>
@@ -30,10 +29,9 @@
             </Image.ContextMenu>
         </Image>
         <StackPanel Grid.Column="4">
-            <Label Content="{Binding CurrentUser.Name}"/>
-            <Label Content="{Binding CurrentUser.Points}"/>
+            <Label Content="{Binding CurrentUser .Name}" Style="{StaticResource LabelStyle}"/>
+            <Label Content="{Binding CurrentUser .Points}" Style="{StaticResource LabelStyle}"/>
         </StackPanel>
-    
         <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6" >
             <ListView.View>
                 <GridView>
@@ -54,10 +52,9 @@
                             <ColumnDefinition SharedSizeGroup="A" />
                             <ColumnDefinition SharedSizeGroup="A" />
                         </Grid.ColumnDefinitions>
-                        <Label Content="{Binding Games.Name}"/>
-                        <Label Content="{Binding Games.OrganizerName}"/>
-                        <Label Content="{Binding Games.Participants}"/>
-                        <Label Content="{Binding Games.IsGameOver}"/>
+                        <Label Content="{Binding Games.Name}" Style="{StaticResource LabelStyle}"/>
+                        <Label Content="{Binding Games.OrganizerName}" Style="{StaticResource LabelStyle}"/>
+                        <Label Content="{Binding Games.Participants}" Style="{StaticResource LabelStyle}"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

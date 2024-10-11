@@ -45,6 +45,7 @@ namespace WPF_Dusza.Pages
             if(sender is ListViewItem item)
             {
                 Game selectedGame = (Game)item.Content ?? throw new Exception("Somehow this is null");
+
                 if(selectedGame.IsGameOver) _window = new eventResults(_repo,selectedGame);
                 else _window = new bettingPage(selectedGame, _repo, _currentUser);
                 WindowUtils.ShowOtherWindow(this, _window);

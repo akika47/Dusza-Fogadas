@@ -15,6 +15,7 @@ using WPF_Dusza.Models;
 using WPF_Dusza.Repo;
 
 
+
 namespace WPF_Dusza.Pages
 {
 	/// <summary>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPF_Dusza.Pages"
         mc:Ignorable="d"
         Title="bettingPage" Height="450" Width="800"
-        Background="darkGray"
+        Background="Gray"
         >
     <Grid>
         <Grid.RowDefinitions>
@@ -24,22 +24,22 @@
 
         <StackPanel Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="2" >
 
-            <Label Content="Játék neve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            <Label Content="Játék neve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Style="{StaticResource LabelStyle}"/>
 
-            <Label Content="Szervező neve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-            <ComboBox x:Name="cbxEvents" Width="200" Height="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" Margin="10">
+            <Label Content="Szervező neve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Style="{StaticResource LabelStyle}"/>
+            <ComboBox x:Name="cbxEvents" Width="200" Height="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" Margin="10" Style="{StaticResource ComboBoxStyle}">
                 <ComboBoxItem Content="Melyik eseményre fogadsz?" IsSelected="True" />
             </ComboBox>
 
-            <ComboBox x:Name="cbxParticipants" Width="200" Height="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14">
+            <ComboBox x:Name="cbxParticipants" Width="200" Height="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" Style="{StaticResource ComboBoxStyle}">
                 <ComboBoxItem Content="Melyik játékosra fogadsz?" IsSelected="True" />
             </ComboBox>
 
-            <TextBox x:Name="txtPrediction" Width="200" Height="60" Text="Mi a tipped?" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Margin="10"/>
+            <TextBox x:Name="txtPrediction" Width="200" Height="60" Text="Mi a tipped?" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Margin="10" Style="{StaticResource TextBoxStyle}"/>
 
-            <TextBox x:Name="txtBetAmount" Width="200" Height="60" Text="Hány pontért?" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="txtBetAmount" Width="200" Height="60" Text="Hány pontért?" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Style="{StaticResource TextBoxStyle}"/>
 
-            <Button x:Name="btnBet" Content="Fogadás" Height="60" Width="200" Margin="10" FontSize="20" />
+            <Button x:Name="btnBet" Content="Fogadás" Height="60" Width="200" Margin="10" FontSize="20" Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
 
     </Grid>
