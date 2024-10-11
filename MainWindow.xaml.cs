@@ -72,5 +72,11 @@ namespace WPF_Dusza
             _currentWindow = new RegistrationPage(_repo);
             WindowUtils.ShowOtherWindow(this, _currentWindow);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            _currentWindow = new bettingPage();
+            WindowUtils.ShowOtherWindow(this, _currentWindow);
+        }
     }
 }

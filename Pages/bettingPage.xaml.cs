@@ -38,6 +38,11 @@ namespace WPF_Dusza.Pages
 			cbxEvents.MouseDoubleClick += SelectEvent;
 		}
 
+		public bettingPage()
+		{
+            InitializeComponent();
+        }
+
         private void SelectEvent(object sender, MouseButtonEventArgs e)
         {
             if(sender is ComboBoxItem item)

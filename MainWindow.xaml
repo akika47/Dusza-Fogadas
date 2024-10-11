@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:WPF_Dusza"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        Background="gray"
+        >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="155"/>
@@ -20,15 +22,16 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Image Source="/profilePic.png"/>
-        <Label Content="Felhasználónév" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="tb_UserName" Grid.Row="2" VerticalAlignment="Center" Margin="5"/>
-        <Label Content="Jelszó" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <Label Content="Felhasználónév" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{StaticResource LabelStyle}"/>
+        <TextBox x:Name="tb_UserName" Grid.Row="2" VerticalAlignment="Center" Margin="5" Style="{StaticResource TextBoxStyle}"/>
+        <Label Content="Jelszó" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{StaticResource LabelStyle}"/>
         <StackPanel Grid.Row="4">
-            <PasswordBox x:Name="pb_Password" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Center" Width="140" Margin="5"/>
-            <Button Content="Belépés" Margin="5" Click="ValidateLogin"/>
-            <Button Content="Regisztrálás" Margin="5" Click="RegisterUser"/>
+            <PasswordBox x:Name="pb_Password" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Center" Width="140" Margin="5" Style="{StaticResource PasswordBoxStyle}"/>
+            <Button Content="Belépés" Margin="5" Click="ValidateLogin" Style="{StaticResource ButtonStyle}"/>
+            <Button Content="Regisztrálás" Margin="5" Click="RegisterUser" Style="{StaticResource ButtonStyle}"/>
+            <Button Content="bettingpage" Click="Button_Click"/>
         </StackPanel>
-
+          
         <Image gif:ImageBehavior.AnimatedSource ="/Files/gamblecore.gif" Grid.Column="1" Grid.RowSpan="5"/>
     </Grid>
 </Window>

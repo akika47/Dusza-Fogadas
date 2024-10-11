@@ -8,25 +8,25 @@
         xmlns:selector="clr-namespace:WPF_Dusza.Utils"
         mc:Ignorable="d"
         Title="CreateEvent" Height="450" Width="800"
-        Background="DarkGray"
+        Background="Gray"
         >
     <Window.Resources>
         <selector:EventDataTemplateSelector x:Key="eventTemplateSelector"/>
         <DataTemplate x:Key="DisplayTemplate">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding GameName}" Width="150"/>
-                <TextBlock Text="{Binding OrganizerName}" Width="150"/>
-                <TextBlock Text="{Binding Participants}" Width="150"/>
-                <TextBlock Text="{Binding Events}" Width="150"/>
+                <TextBlock Text="{Binding GameName}" Width="150" Style="{StaticResource TextBlockStyle}"/>
+                <TextBlock Text="{Binding OrganizerName}" Width="150" Style="{StaticResource TextBlockStyle}"/>
+                <TextBlock Text="{Binding Participants}" Width="150" Style="{StaticResource TextBlockStyle}"/>
+                <TextBlock Text="{Binding Events}" Width="150" Style="{StaticResource TextBlockStyle}"/>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="RowTemplate">
             <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding GameName}" AcceptsReturn="True" Width="150"/>
-                <TextBox Text="{Binding OrganizerName}" AcceptsReturn="True" Width="150"/>
-                <TextBox Text="{Binding Participants}" AcceptsReturn="True" Width="150"/>
-                <TextBox Text="{Binding Events}" AcceptsReturn="True" Width="150"/>
-                <Button Content="Új játék létrehozása" Click="CreateEventAsync"/>
+                <TextBox Text="{Binding GameName}" AcceptsReturn="True" Width="150" Style="{StaticResource TextBoxStyle}"/>
+                <TextBox Text="{Binding OrganizerName}" AcceptsReturn="True" Width="150" Style="{StaticResource TextBoxStyle}"/>
+                <TextBox Text="{Binding Participants}" AcceptsReturn="True" Width="150" Style="{StaticResource TextBoxStyle}"/>
+                <TextBox Text="{Binding Events}" AcceptsReturn="True" Width="150" Style="{StaticResource TextBoxStyle}"/>
+                <Button Content="Új játék létrehozása" Click="CreateEventAsync" Style="{StaticResource ButtonStyle}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -47,11 +47,11 @@
         </Grid.ColumnDefinitions>
         <!--testing-->
 
-        <Label Content="Játék neve" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <Label Content="Szervező neve" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <Label Content="Játékosok" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-       
-        <Label Content="Események" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+        <Label Content="Játék neve" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Style="{StaticResource LabelStyle}"/>
+        <Label Content="Szervező neve" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Style="{StaticResource LabelStyle}"/>
+        <Label Content="Játékosok" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Style="{StaticResource LabelStyle}"/>
+
+        <Label Content="Események" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Style="{StaticResource LabelStyle}"/>
         <Image Source="\Images\profilePic.png" Grid.Column="5" Height="100" Width="100"/>
 
         <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6" ItemTemplateSelector="{StaticResource eventTemplateSelector}">
