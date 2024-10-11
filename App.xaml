@@ -5,6 +5,10 @@
              xmlns:custom="clr-namespace:WPF_Dusza.CustomControls"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-       
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="./Style/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

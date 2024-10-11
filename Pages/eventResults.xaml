@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPF_Dusza.Pages"
         mc:Ignorable="d"
         Title="eventResults" Height="450" Width="800"
-        Background="darkGray"
+        Background="Gray"
         >
     <Grid>
         <Grid.RowDefinitions>
@@ -24,8 +24,8 @@
         <Image Source="\Images\profilePic.png" Grid.Column="3" Height="100" VerticalAlignment="Top" Width="100" HorizontalAlignment="Right" Margin="10"/>
 
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" >
-            <Label x:Name="lb_GameName" Content="Játék neve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-            <Label x:Name="lb_Organizer" Content="Szervező neve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            <Label x:Name="lb_GameName" Content="Játék neve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Style="{StaticResource LabelStyle}"/>
+            <Label x:Name="lb_Organizer" Content="Szervező neve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Style="{StaticResource LabelStyle}"/>
         </StackPanel>
 
         <DataGrid x:Name="dtgResults" 

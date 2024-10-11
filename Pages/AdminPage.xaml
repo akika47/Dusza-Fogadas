@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Dusza.Pages"
         mc:Ignorable="d"
-        Title="AdminPage" Height="450" Width="800">
+        Title="AdminPage" Height="450" Width="800"
+        Background="Gray"
+        >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -33,48 +35,60 @@
             <Button x:Name="btnLogOut"
                 Grid.Column="3"
                 Width="150"
-                Height="50">Kijelentkezés</Button>
+                Height="50" Style="{StaticResource ButtonStyle}">Kijelentkezés</Button>
 
-            <Label Content="Szervező neve:" />
+            <Label Content="Szervező neve:" Style="{StaticResource LabelStyle}"/>
             <TextBox x:Name="txtOrganizerName"
                      Width="200"
                      Height="30"
                      Margin="5"
                      FontSize="15"
-                     VerticalContentAlignment="Center"/>
+                     VerticalContentAlignment="Center"
+                     Style="{StaticResource TextBoxStyle}"
+                     />
 
-            <Label Content="Jelszó:" />
+            <Label Content="Jelszó:" Style="{StaticResource LabelStyle}"/>
             <TextBox x:Name="txtOrganizerPassword"
                      Width="200"
                      Height="30"
                      Margin="5"
                      FontSize="15"
-                     VerticalContentAlignment="Center" />
+                     VerticalContentAlignment="Center" 
+                     Style="{StaticResource TextBoxStyle}"
+                     />
 
-            <Label Content="Jelszó mégegyszer:" />
+            <Label Content="Jelszó mégegyszer:" Style="{StaticResource LabelStyle}" />
             <TextBox x:Name="txtOrganizerPasswordAgain"
                      Width="200"
                      Height="30"
                      Margin="5"
                      FontSize="15"
-                     VerticalContentAlignment="Center" />
+                     VerticalContentAlignment="Center"
+                     Style="{StaticResource TextBoxStyle}"
+                     />
 
 
             <Button x:Name="btnAddOrganizer"
                     Content="Szervező hozzáadása"
                     Width="150"
                     Height="40"
-                    Margin="5" />
+                    Margin="5"
+                    Style="{StaticResource ButtonStyle}"
+                    />
             <Button x:Name="btnDeleteOrganizer"
                     Content="Szervező törlése"
                     Width="150"
                     Height="40"
-                    Margin="5" />
+                    Margin="5" 
+                    Style="{StaticResource ButtonStyle}"
+                    />
             <Button x:Name="btnModifyOrganizer"
                     Content="Szervező módosítása"
                     Width="150"
                     Height="40"
-                    Margin="5"/>
+                    Margin="5"
+                    Style="{StaticResource ButtonStyle}"
+                    />
         </StackPanel>
     </Grid>
 </Window>
