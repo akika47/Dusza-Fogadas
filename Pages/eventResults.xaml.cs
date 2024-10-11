@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_Dusza.Models;
+using WPF_Dusza.Repo;
 
 
 namespace WPF_Dusza.Pages
@@ -22,13 +23,20 @@ namespace WPF_Dusza.Pages
 	public partial class eventResults : Window
 	{
 		Game _selectedGame;
+		BettingRepository _repo;
 		public Game SelectedGame { get => _selectedGame; }
 		public List<Result> Results { get; set; } = [];
 		
-		public eventResults(Game game)
+		public eventResults(BettingRepository repo,Game game)
 		{
+			_repo = repo;
 			_selectedGame = game;
 			InitializeComponent();
+			Task.Run(async () =>
+			{
+				Results = await _repo.ResultRepository.GetResultsAsync(_selectedGame).ToListAsync();
+			});
+
 			DataContext = this;
 		}
 	}
