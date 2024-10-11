@@ -8,15 +8,15 @@ namespace WPF_Dusza.Utils
     {
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            FrameworkElement element = container as FrameworkElement;
-            GameRow row = item as GameRow;
+            FrameworkElement element = (FrameworkElement)container;
+            GameRow row = (GameRow)item;
             if(row.IsDisplay)
             {
-                return element.FindResource("DisplayTemplate") as DataTemplate;
+                return (DataTemplate)element.FindResource("DisplayTemplate");
             }
             else
             {
-                return element.FindResource("RowTemplate") as DataTemplate;
+                return (DataTemplate)element.FindResource("RowTemplate");
             }
         }
     }

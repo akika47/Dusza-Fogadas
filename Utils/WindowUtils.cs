@@ -16,7 +16,7 @@ namespace WPF_Dusza.Utils
         {
             MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-        public static void LogoutUser(User? user, Window window)
+        public static void LogoutUser(User user, Window window)
         {
             user = null;
             window.Close();

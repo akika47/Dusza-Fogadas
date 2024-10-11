@@ -1,24 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
+﻿using System.Windows;
 using WPF_Dusza.Models;
 using WPF_Dusza.Repo;
 using WPF_Dusza.Utils;
-using WPF_Dusza.Models;
-using System.ComponentModel;
 
 namespace WPF_Dusza.Pages
 {
@@ -28,21 +11,35 @@ namespace WPF_Dusza.Pages
     public partial class CreateEvent : Window
     {
 
-        BettingRepository _repo;
+        readonly BettingRepository _repo;
         GameRow DisplayRow, NewRow;
+        readonly User? _currentUser;
         public CreateEvent(BettingRepository repo)
         {
             InitializeComponent();
             _repo = repo;
             NewRow = new() { IsDisplay = false };
-            //var EditableRow = new { RowItem = new GameRowItem(), CreateButton = new Button() { Content = "Újesemény létrehozása" } };
-            //EditableRow.CreateButton.Click += async (o,e) => await CreateEventAsync();
             lvEvents.Items.Add(NewRow);
-
         }
 
         async void CreateEventAsync(object sender, RoutedEventArgs e)
         {
+            List<Participant> participants = NewRow.Participants.Split('\n')
+                .Select(x => new Participant { Name = x}).ToList();
+            if(participants.Count > 2)
+            {
+                WindowUtils.DisplayErrorMessage("Több, mint 2 játékost nem lehet megadni");
+                return;
+            }
+            Game NewGame = new()
+            {
+                Name = NewRow.GameName,
+                OrganizerName = NewRow.OrganizerName,
+                Participants = participants,
+                IsGameOver = false
+            };
+            List<Event> events = NewRow.Events.Split('\n').Select(x => new Event { Name = x}).ToList();
+            await _repo.GameRepository.CreateNewGameAsync(_currentUser!, NewGame, events);
             await Dispatcher.BeginInvoke(() =>
             {
                 DisplayRow = new GameRow

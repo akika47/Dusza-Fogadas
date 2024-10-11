@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,27 +27,33 @@ namespace WPF_Dusza.Pages
         User? _currentUser;
         Window _window;
         public User? CurrentUser { get => _currentUser; }
-        public List<Game> Games { get; set; }
+        public ObservableCollection<Game> Games { get; set; }
         public EventList(BettingRepository repo, User? user)
         {
             _repo = repo;
             _currentUser = user;
             DataContext = this;
             InitializeComponent();
-            Games = Task.Run(async () => await _repo.GameRepository.GetGamesAsync().ToListAsync()).Result;
-            lvEvents.ItemsSource = Games;
+            Loaded += InitList;
             lvEvents.MouseDoubleClick += GameSelected;
             mi_logout.Click += (o, e) => WindowUtils.LogoutUser(_currentUser, this);
 
         }
 
+        private async void InitList(object sender, RoutedEventArgs e)
+        {
+            var result = await _repo.GameRepository.GetGamesAsync().ToListAsync();
+            Games = new(result);
+            lvEvents.ItemsSource = Games;
+        }
+
         private void GameSelected(object sender, MouseButtonEventArgs e)
         {
-            if(sender is ListViewItem item)
+            if (sender is ListViewItem item)
             {
                 Game selectedGame = (Game)item.Content ?? throw new Exception("Somehow this is null");
 
-                if(selectedGame.IsGameOver) _window = new eventResults(_repo,selectedGame);
+                if (selectedGame.IsGameOver) _window = new eventResults(_repo, selectedGame);
                 else _window = new bettingPage(selectedGame, _repo, _currentUser);
                 WindowUtils.ShowOtherWindow(this, _window);
             }

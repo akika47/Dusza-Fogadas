@@ -39,7 +39,7 @@ namespace WPF_Dusza
             {
                 case 0:
                     //user is admin
-                    _currentWindow = new AdminPage();
+                    _currentWindow = new AdminPage(_repo);
                     break;
                 case 1:
                     //user is organizer

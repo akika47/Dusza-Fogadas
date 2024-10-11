@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WPF_Dusza.Models;
 using WPF_Dusza.Repo;
 using WPF_Dusza.Utils;
-using WPF_Dusza.Models;
 
 namespace WPF_Dusza.Pages
 {
@@ -24,8 +13,8 @@ namespace WPF_Dusza.Pages
 	public partial class bettingPage : Window
 	{
 		Game SelectedGame { get; set; }
-		BettingRepository _repo;
-		User? _currentUser;
+		readonly BettingRepository _repo;
+		readonly User? _currentUser;
 		Event _selectedEvent;
 		Participant _selectedParticipant;
 		public bettingPage(Game game, BettingRepository repo, User? user)
@@ -66,8 +55,8 @@ namespace WPF_Dusza.Pages
 				WindowUtils.DisplayErrorMessage("Hiba, a pontok csak számok lehetnek");
 				return;
 			}
-			Bet bet = new Bet
-			{
+            Bet bet = new()
+            {
 				EventId = _selectedEvent.Id,
 				UserID = _currentUser!.Id,
 				ParticipantId = _selectedParticipant!.Id,
