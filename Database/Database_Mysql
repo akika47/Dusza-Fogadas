@@ -7,7 +7,7 @@ USE betting;
 
 -- Create the tables
 CREATE TABLE users (
-  id INT PRIMARY KEY,
+  id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(255),
   password VARCHAR(255),
   points INT,
@@ -15,12 +15,12 @@ CREATE TABLE users (
 );
 
 CREATE TABLE participants (
-  id INT PRIMARY KEY,
+  id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(255)
 );
 
 CREATE TABLE games (
-  id INT PRIMARY KEY,
+  id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(255),
   userId INT,
   status INT,
@@ -28,7 +28,7 @@ CREATE TABLE games (
 );
 
 CREATE TABLE events (
-  id INT PRIMARY KEY,
+  id INT PRIMARY KEY AUTO_INCREMENT,
   eventName VARCHAR(255),
   gameId INT,
   FOREIGN KEY (gameId) REFERENCES games(id)
@@ -43,7 +43,7 @@ CREATE TABLE gameparticipants (
 );
 
 CREATE TABLE bets (
-  id INT PRIMARY KEY,
+  id INT PRIMARY KEY AUTO_INCREMENT,
   eventId INT,
   userId INT,
   participantId INT,
@@ -55,7 +55,7 @@ CREATE TABLE bets (
 );
 
 CREATE TABLE results (
-  id INT PRIMARY KEY,
+  id INT PRIMARY KEY AUTO_INCREMENT,
   eventId INT,
   result VARCHAR(255),
   participantId INT,
