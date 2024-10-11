@@ -24,15 +24,22 @@
         <Image Source="\Images\profilePic.png" Grid.Column="3" Height="100" VerticalAlignment="Top" Width="100" HorizontalAlignment="Right" Margin="10"/>
 
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" >
-            <Label Content="Játék neve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-            <Label Content="Szervező neve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            <Label x:Name="lb_GameName" Content="Játék neve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            <Label x:Name="lb_Organizer" Content="Szervező neve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
         </StackPanel>
 
-        <DataGrid x:Name="dtgResults" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" AutoGenerateColumns="False" MinColumnWidth="250" ColumnHeaderHeight="50">
+        <DataGrid x:Name="dtgResults" 
+                  Grid.Row="1" 
+                  Grid.ColumnSpan="4" 
+                  Grid.RowSpan="2" 
+                  AutoGenerateColumns="False" 
+                  MinColumnWidth="250" 
+                  ColumnHeaderHeight="50"
+                  ItemsSource="{Binding Results}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Esemény neve"/>
-                <DataGridTextColumn Header="Saját Tipp"/>
-                <DataGridTextColumn Header="Eredmény"/>
+                <DataGridTextColumn Header="Esemény neve" Binding="{ Binding EventName}"/>
+                <DataGridTextColumn Header="Saját Tipp" Binding="{ Binding Prediction}"/>
+                <DataGridTextColumn Header="Eredmény" Binding="{Binding EventResult}"/>
             </DataGrid.Columns>
         </DataGrid>
 

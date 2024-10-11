@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF_Dusza.Models;
+using WPF_Dusza.Repo;
+using WPF_Dusza.Utils;
 
 namespace WPF_Dusza.Pages
 {
@@ -19,9 +22,33 @@ namespace WPF_Dusza.Pages
     /// </summary>
     public partial class EventList : Window
     {
-        public EventList()
+        BettingRepository _repo;
+        User? _currentUser;
+        Window _window;
+        public User? CurrentUser { get => _currentUser; }
+        public List<Game> Games { get; set; }
+        public EventList(BettingRepository repo, User? user)
         {
+            _repo = repo;
+            _currentUser = user;
+            DataContext = this;
             InitializeComponent();
+            Games = Task.Run(async () => await _repo.GameRepository.GetGamesAsync().ToListAsync()).Result;
+            lvEvents.ItemsSource = Games;
+            lvEvents.MouseDoubleClick += GameSelected;
+            mi_logout.Click += (o, e) => WindowUtils.LogoutUser(_currentUser, this);
+
+        }
+
+        private void GameSelected(object sender, MouseButtonEventArgs e)
+        {
+            if(sender is ListViewItem item)
+            {
+                Game selectedGame = (Game)item.Content ?? throw new Exception("Somehow this is null");
+                if(selectedGame.IsGameOver) _window = new eventResults(selectedGame);
+                else _window = new bettingPage(selectedGame, _repo, _currentUser);
+                WindowUtils.ShowOtherWindow(this, _window);
+            }
         }
     }
 }

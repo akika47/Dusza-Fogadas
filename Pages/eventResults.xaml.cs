@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF_Dusza.Models;
+
 
 namespace WPF_Dusza.Pages
 {
@@ -19,9 +21,15 @@ namespace WPF_Dusza.Pages
 	/// </summary>
 	public partial class eventResults : Window
 	{
-		public eventResults()
+		Game _selectedGame;
+		public Game SelectedGame { get => _selectedGame; }
+		public List<Result> Results { get; set; } = [];
+		
+		public eventResults(Game game)
 		{
+			_selectedGame = game;
 			InitializeComponent();
+			DataContext = this;
 		}
 	}
 }

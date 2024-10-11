@@ -4,10 +4,33 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Dusza.Pages"
+        xmlns:custom="clr-namespace:WPF_Dusza.CustomControls"
+        xmlns:selector="clr-namespace:WPF_Dusza.Utils"
         mc:Ignorable="d"
         Title="CreateEvent" Height="450" Width="800"
         Background="DarkGray"
         >
+    <Window.Resources>
+        <selector:EventDataTemplateSelector x:Key="eventTemplateSelector"/>
+        <DataTemplate x:Key="DisplayTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding GameName}" Width="150"/>
+                <TextBlock Text="{Binding OrganizerName}" Width="150"/>
+                <TextBlock Text="{Binding Participants}" Width="150"/>
+                <TextBlock Text="{Binding Events}" Width="150"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="RowTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding GameName}" AcceptsReturn="True" Width="150"/>
+                <TextBox Text="{Binding OrganizerName}" AcceptsReturn="True" Width="150"/>
+                <TextBox Text="{Binding Participants}" AcceptsReturn="True" Width="150"/>
+                <TextBox Text="{Binding Events}" AcceptsReturn="True" Width="150"/>
+                <Button Content="Új játék létrehozása" Click="CreateEventAsync"/>
+            </StackPanel>
+        </DataTemplate>
+
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -26,18 +49,12 @@
 
         <Label Content="Játék neve" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
         <Label Content="Szervező neve" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <Label Content="1. játékos" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <Label Content="2. játékos " Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <Label Content="Események" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+        <Label Content="Játékosok" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+       
+        <Label Content="Események" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
         <Image Source="\Images\profilePic.png" Grid.Column="5" Height="100" Width="100"/>
 
-        <TextBox x:Name="txtGameName" Grid.Row="1" Grid.Column="0" Width="120" Height="60" />
-        <TextBox x:Name="txtOrganizerName" Grid.Row="1" Grid.Column="1" Width="120" Height="60" />
-        <TextBox x:Name="txtPlayerNames" Grid.Row="1" Grid.Column="2" Width="120" Height="60" />
-        <TextBox x:Name="txtMultiplier" PreviewTextInput="txtMultiplier_PreviewTextInput" Grid.Row="1" Grid.Column="3" Width="120" Height="60" />
-        <TextBox x:Name="txtEvent" Grid.Row="1" Grid.Column="4" Width="120" Height="60" />
-        <Button x:Name="btnCreateEvent" Grid.Row="1" Grid.Column="5" Width="120" Height="60" Content="Új meccs felvevése" Click="btnCreateEvent_Click"/>
-
-        <ListView x:Name="lvEvents" Grid.Row="2" Grid.ColumnSpan="6"/>
+        <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6" ItemTemplateSelector="{StaticResource eventTemplateSelector}">
+        </ListView>
     </Grid>
 </Window>

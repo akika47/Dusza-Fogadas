@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using WPF_Dusza.Models;
 using WPF_Dusza.Repo;
 using WPF_Dusza.Utils;
@@ -22,8 +10,8 @@ namespace WPF_Dusza.Pages
     /// </summary>
     public partial class RegistrationPage : Window
     {
-        RaceRepository _repo;
-        public RegistrationPage(RaceRepository repo)
+        BettingRepository _repo;
+        public RegistrationPage(BettingRepository repo)
         {
             InitializeComponent();
             _repo = repo;
@@ -38,10 +26,10 @@ namespace WPF_Dusza.Pages
             {
                 Name = Username,
                 Password = Hashing.HashPassword(Password),
-                Points = 100,
+                Points = 50,
                 Role = 2
             };
-            if (_repo.GetAllUsers().Any(x => x == user)) 
+            if (await _repo.UserRepository.GetAllUsersAsync().AnyAsync(x => x == user)) 
             {
                 MessageBox.Show("Ez a felhasználó már létezik!\n");
                 return;
@@ -51,7 +39,10 @@ namespace WPF_Dusza.Pages
                 MessageBox.Show("A jelszavak nem egyeznek!\n");
                 return;
             }
-            await _repo.RegisterUserAsync(user);
+            await _repo.UserRepository.RegisterUserAsync(user);
+            if (MessageBox.Show("Felhasználó sikeresen regisztrálva", "Successfull registration",
+               MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK) Close();
+            
         }
     }
 }

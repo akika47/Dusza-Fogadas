@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -12,6 +13,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF_Dusza.CustomControls;
+using WPF_Dusza.Models;
+using WPF_Dusza.Repo;
+using WPF_Dusza.Utils;
+using WPF_Dusza.Models;
+using System.ComponentModel;
 
 namespace WPF_Dusza.Pages
 {
@@ -20,18 +27,38 @@ namespace WPF_Dusza.Pages
     /// </summary>
     public partial class CreateEvent : Window
     {
-        public CreateEvent()
+
+        BettingRepository _repo;
+        GameRow DisplayRow, NewRow;
+        public CreateEvent(BettingRepository repo)
         {
             InitializeComponent();
+            _repo = repo;
+            NewRow = new() { IsDisplay = false };
+            //var EditableRow = new { RowItem = new GameRowItem(), CreateButton = new Button() { Content = "Újesemény létrehozása" } };
+            //EditableRow.CreateButton.Click += async (o,e) => await CreateEventAsync();
+            lvEvents.Items.Add(NewRow);
+
         }
 
-        private void btnCreateEvent_Click(object sender, RoutedEventArgs e)
+        async void CreateEventAsync(object sender, RoutedEventArgs e)
         {
-            string eventName = txtGameName.Text;
-            string organizerName = txtOrganizerName.Text;
-            string player1Name = txtPlayerNames.Text.Split('-')[0];
-            string player2Name = txtPlayerNames.Text.Split('-')[1];
-            int multiplier = int.Parse(txtMultiplier.Text);
+            await Dispatcher.BeginInvoke(() =>
+            {
+                DisplayRow = new GameRow
+                {
+                    GameName = NewRow.GameName,
+                    OrganizerName = NewRow.OrganizerName,
+                    Participants = NewRow.Participants,
+                    Events = NewRow.Events,
+                    IsDisplay = true
+                };
+                int firstIndex = lvEvents.Items.IndexOf(NewRow);
+                lvEvents.Items.Insert(firstIndex, DisplayRow);
+                DisplayRow = new() { IsDisplay = false };
+            });
         }
+
+
     }
 }
