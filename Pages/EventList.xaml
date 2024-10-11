@@ -21,7 +21,6 @@
             <ColumnDefinition SharedSizeGroup="A"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <!--testing-->
         <Image Source="/Pages/profilePic.png" Grid.Column="5" Height="50" VerticalAlignment="Top" Width="100" HorizontalAlignment="Right" Margin="10">
             <Image.ContextMenu>
                 <ContextMenu>
@@ -33,7 +32,6 @@
             <Label Content="{Binding CurrentUser .Name}" Style="{StaticResource LabelStyle}"/>
             <Label Content="{Binding CurrentUser .Points}" Style="{StaticResource LabelStyle}"/>
         </StackPanel>
-
         <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6" >
             <ListView.View>
                 <GridView>
@@ -57,7 +55,6 @@
                         <Label Content="{Binding Games.Name}" Style="{StaticResource LabelStyle}"/>
                         <Label Content="{Binding Games.OrganizerName}" Style="{StaticResource LabelStyle}"/>
                         <Label Content="{Binding Games.Participants}" Style="{StaticResource LabelStyle}"/>
-                        <Label Content="{Binding Games.IsGameOver}" Style="{StaticResource LabelStyle}"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -43,6 +43,7 @@ namespace WPF_Dusza.Pages
             InitializeComponent();
         }
 
+
         private void SelectEvent(object sender, MouseButtonEventArgs e)
         {
             if(sender is ComboBoxItem item)
