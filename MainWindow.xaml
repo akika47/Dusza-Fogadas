@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Dusza"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -11,23 +12,23 @@
             <ColumnDefinition Width="155"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Image Source="/profilePic.png"/>
-            <Label Content="Felhasználónév" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-            <TextBox x:Name="tb_UserName" Grid.Row="2" VerticalAlignment="Center" Margin="5"/>
-            <Label Content="Jelszó" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-            <StackPanel Grid.Row="4">
-                <PasswordBox x:Name="pb_Password" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Center" Width="140" Margin="5"/>
-                <Button Content="Belépés" Margin="5" Click="ValidateLogin"/>
-                <Button Content="Regisztrálás" Margin="5" Click="RegisterUser"/>
-            </StackPanel>
-        </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Image Source="/profilePic.png"/>
+        <Label Content="Felhasználónév" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="tb_UserName" Grid.Row="2" VerticalAlignment="Center" Margin="5"/>
+        <Label Content="Jelszó" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <StackPanel Grid.Row="4">
+            <PasswordBox x:Name="pb_Password" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Center" Width="140" Margin="5"/>
+            <Button Content="Belépés" Margin="5" Click="ValidateLogin"/>
+            <Button Content="Regisztrálás" Margin="5" Click="RegisterUser"/>
+        </StackPanel>
+
+        <Image gif:ImageBehavior.AnimatedSource ="/Files/gamblecore.gif" Grid.Column="1" Grid.RowSpan="5"/>
     </Grid>
 </Window>
