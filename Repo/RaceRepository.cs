@@ -11,6 +11,7 @@ namespace WPF_Dusza.Repo
         readonly EventRepo _eventRepo = new();
         readonly ResultRepo _resultRepo = new();
 
+
         public UserRepo UserRepository { get => _userRepo; }
         public GameRepo GameRepository { get => _gameRepo; }
         public BetRepo BetRepository { get => _betRepo; }
@@ -81,6 +82,7 @@ namespace WPF_Dusza.Repo
 
             cmd = "SELECT g.id, g.name, u.name AS organizer_name, g.status AS current_status FROM games g JOIN users u ON g.userId = u.id LEFT JOIN gameparticipants gp ON g.id = gp.gameId GROUP BY g.id, g.name, u.name;";
 
+
             using MySqlConnection conn = GetConnection();
             using MySqlCommand command = new(cmd, conn);
             await conn.OpenAsync();
@@ -98,8 +100,25 @@ namespace WPF_Dusza.Repo
                 };
                 yield return game;
 
+
             }
         }
+        public async Task<List<Participant>> GetParticipantsAsync(int ID)
+        {
+            cmd = $"SELECT id,name FROM participants WHERE INNER JOIN gameparticipants ON gameparticipants.participantid=participants.id" +
+                $"WHERE gameparticipants.gameId={ID}";
+            using MySqlConnection conn = GetConnection();
+            using MySqlCommand command = new(cmd, conn);
+            await conn.OpenAsync();
+            using MySqlDataReader reader = command.ExecuteReader();
+            List<Participant> Participants = [];
+            while (await reader.ReadAsync())
+            {
+                Participants.Add(new() { Id = reader.GetInt32(0), Name = reader.GetString(0) });
+            }
+            return Participants;
+        }
+
         public async Task<List<Participant>> GetParticipantsAsync(int ID)
         {
             cmd = $"SELECT id,name FROM participants INNER JOIN gameparticipants ON gameparticipants.participantid=participants.id WHERE gameparticipants.gameId={ID};";
@@ -118,6 +137,7 @@ namespace WPF_Dusza.Repo
 
 
         public async Task CreateNewGameAsync(User user, Game game, List<Event> events, List<Participant> participants)
+
         {
             cmd = "INSERT INTO games(name, userId, status) VALUES(@name,@userId,@status) ";
             using MySqlConnection conn = GetConnection();
@@ -209,6 +229,7 @@ namespace WPF_Dusza.Repo
                 $"FROM events AS e JOIN gameparticipants AS gp ON e.id = gp.gameld " +
                 $"JOIN bets AS b ON gp.participantid = b.participantid JOIN users AS u ON " +
                 $"b.userld = u.id; where gp.gameId={game.Id}";
+
 
             using MySqlConnection conn = GetConnection();
             using MySqlCommand command = new(cmd, conn);

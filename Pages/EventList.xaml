@@ -38,6 +38,7 @@
             <Label Content="{Binding CurrentUser .Points}" Style="{StaticResource LabelStyle}"/>
         </StackPanel>
         <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6">
+
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Játék neve" Width="132" DisplayMemberBinding="{Binding Name}"/>
@@ -49,6 +50,24 @@
                                     DisplayMemberBinding="{Binding IsGameOver}"/>
                 </GridView>
             </ListView.View>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition SharedSizeGroup="A" />
+                            <ColumnDefinition SharedSizeGroup="A" />
+                            <ColumnDefinition SharedSizeGroup="A" />
+                            <ColumnDefinition SharedSizeGroup="A" />
+                            <ColumnDefinition SharedSizeGroup="A" />
+                            <ColumnDefinition SharedSizeGroup="A" />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{Binding Games.Name}" Style="{StaticResource LabelStyle}"/>
+                        <Label Content="{Binding Games.OrganizerName}" Style="{StaticResource LabelStyle}"/>
+                        <Label Content="{Binding Games.Participants}" Style="{StaticResource LabelStyle}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
         </ListView>
     </Grid>
 </Window>
