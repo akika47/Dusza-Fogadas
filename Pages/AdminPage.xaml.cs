@@ -50,7 +50,7 @@ namespace WPF_Dusza.Pages
                 return;
             }
            User NewUser = _selectedUser with { Name = txtOrganizerName.Text, 
-               Password = txtOrganizerPassword.Text };
+               Password = Hashing.HashPassword(txtOrganizerPassword.Text) };
            Users.Add(NewUser);  
 
         }

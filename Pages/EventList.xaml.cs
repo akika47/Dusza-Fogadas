@@ -35,7 +35,6 @@ namespace WPF_Dusza.Pages
             DataContext = this;
             InitializeComponent();
             Loaded += InitList;
-            lvEvents.MouseDoubleClick += GameSelected;
             mi_logout.Click += (o, e) => WindowUtils.LogoutUser(_currentUser, this);
 
         }
@@ -49,14 +48,11 @@ namespace WPF_Dusza.Pages
 
         private void GameSelected(object sender, MouseButtonEventArgs e)
         {
-            if (sender is ListViewItem item)
-            {
-                Game selectedGame = (Game)item.Content ?? throw new Exception("Somehow this is null");
 
-                if (selectedGame.IsGameOver) _window = new eventResults(_repo, selectedGame);
-                else _window = new bettingPage(selectedGame, _repo, _currentUser);
-                WindowUtils.ShowOtherWindow(this, _window);
-            }
+            Game selectedGame = ((ListViewItem)sender).Content as Game;
+            if (selectedGame.IsGameOver) _window = new eventResults(_repo, selectedGame);
+            else _window = new bettingPage(selectedGame, _repo, _currentUser);
+            WindowUtils.ShowOtherWindow(this, _window);
         }
     }
 }

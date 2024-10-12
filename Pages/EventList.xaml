@@ -8,6 +8,11 @@
         Title="EventList" Height="450" Width="800"
         Background="Gray"
         >
+    <Window.Resources>
+        <Style TargetType="ListViewItem">
+            <EventSetter Event="MouseDoubleClick" Handler="GameSelected"/>
+        </Style>
+    </Window.Resources>
     <Grid Grid.IsSharedSizeScope="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>

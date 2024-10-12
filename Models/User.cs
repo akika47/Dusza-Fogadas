@@ -17,6 +17,6 @@ namespace WPF_Dusza.Models
             return other is User user && Name == user.Name
                 && Password == user.Password;
         }
-        public override int GetHashCode() => base.GetHashCode();
+        public override int GetHashCode() => HashCode.Combine(Name, Password);
     }
 }

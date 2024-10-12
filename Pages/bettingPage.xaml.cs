@@ -12,7 +12,7 @@ namespace WPF_Dusza.Pages
 	/// </summary>
 	public partial class bettingPage : Window
 	{
-		Game SelectedGame { get; set; }
+		public Game SelectedGame { get; set; }
 		readonly BettingRepository _repo;
 		readonly User? _currentUser;
 		Event _selectedEvent;
@@ -21,9 +21,10 @@ namespace WPF_Dusza.Pages
 		{
 			InitializeComponent();
 			SelectedGame = game;
+			DataContext = this;
 			_repo = repo;
 			_currentUser = user;
-			this.Loaded += async (o, e) => await FillComboboxes();
+			Loaded += async (o, e) => await FillComboboxes();
 			cbxEvents.MouseDoubleClick += SelectEvent;
 		}
 
