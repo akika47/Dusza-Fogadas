@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:WPF_Dusza.Pages"
         mc:Ignorable="d"
         Title="eventResults" Height="450" Width="800"
-        Background="Gray"
-        >
+        Background="#8BC34A">
+    <!-- Darker green background -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
@@ -21,9 +21,9 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <!--testing-->
-        <Image Source="\Images\profilePic.png" Grid.Column="3" Height="100" VerticalAlignment="Top" Width="100" HorizontalAlignment="Right" Margin="10"/>
+        <Image Source="/Images/profilePic.png" Grid.Column="3" Height="100" VerticalAlignment="Top" Width="100" HorizontalAlignment="Right" Margin="10"/>
 
-        <StackPanel Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" >
+        <StackPanel Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="10">
 
             <Label x:Name="lb_GameName" Content="Játék neve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Style="{StaticResource LabelStyle}"/>
             <Label x:Name="lb_Organizer" Content="Szervező neve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Style="{StaticResource LabelStyle}"/>
@@ -37,7 +37,9 @@
                   AutoGenerateColumns="False" 
                   MinColumnWidth="250" 
                   ColumnHeaderHeight="50"
-                  ItemsSource="{Binding Results}">
+                  ItemsSource="{Binding Results}"
+                  Style="{StaticResource DataGridStyle}"
+                  >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Esemény neve" Binding="{ Binding EventName}"/>
                 <DataGridTextColumn Header="Saját Tipp" Binding="{ Binding Prediction}"/>
