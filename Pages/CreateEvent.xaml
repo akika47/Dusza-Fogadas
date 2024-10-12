@@ -14,10 +14,22 @@
         <DataTemplate x:Key="DisplayTemplate">
             <StackPanel Orientation="Horizontal">
 
+                <StackPanel.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Játék lezárása" /> 
+                    </ContextMenu>
+                </StackPanel.ContextMenu>
+                <TextBlock Text="{Binding GameName}" Width="150" />
+                <TextBlock Text="{Binding OrganizerName}" Width="150" />
+                <TextBlock Text="{Binding Participants}" Width="150" />
+                <TextBlock Text="{Binding Events}" Width="150" />
+
+
                 <TextBlock Text="{Binding GameName}" Width="150" Style="{StaticResource TextBlockStyle}"/>
                 <TextBlock Text="{Binding OrganizerName}" Width="150" Style="{StaticResource TextBlockStyle}"/>
                 <TextBlock Text="{Binding Participants}" Width="150" Style="{StaticResource TextBlockStyle}"/>
                 <TextBlock Text="{Binding Events}" Width="150" Style="{StaticResource TextBlockStyle}"/>
+
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="RowTemplate">

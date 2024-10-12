@@ -24,9 +24,15 @@
                   Grid.Row="0"
                   Margin="10"
                   Background="#EDE0D4"
-                  BorderThickness="0">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Név" />
+                  BorderThickness="0" SelectionChanged="dtgOrganizers_SelectionChanged"
+                  ItemsSource="{Binding Users}">
+            <DataGrid.Columns >
+                <DataGridTextColumn Width="1*" 
+                                    Header="Név"  
+                                    Binding="{Binding Name}"/>
+                <DataGridTextColumn Width="1*" 
+                                    Header="Jelszó"  
+                                    Binding="{Binding Password}"/>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Column="1"
@@ -45,7 +51,7 @@
                      FontSize="15"
                      VerticalContentAlignment="Center"
                      Style="{StaticResource TextBoxStyle}"
-                     />
+                                         />
 
             <Label Content="Jelszó:" Style="{StaticResource LabelStyle}"/>
             <TextBox x:Name="txtOrganizerPassword"
@@ -55,7 +61,7 @@
                      FontSize="15"
                      VerticalContentAlignment="Center" 
                      Style="{StaticResource TextBoxStyle}"
-                     />
+                                         />
 
             <Label Content="Jelszó mégegyszer:" Style="{StaticResource LabelStyle}" />
             <TextBox x:Name="txtOrganizerPasswordAgain"
@@ -74,6 +80,7 @@
                     Height="40"
                     Margin="5"
                     Style="{StaticResource ButtonStyle}"
+                    Click="AddUser"
                     />
             <Button x:Name="btnDeleteOrganizer"
                     Content="Szervező törlése"
@@ -88,6 +95,7 @@
                     Height="40"
                     Margin="5"
                     Style="{StaticResource ButtonStyle}"
+                    Click="ModifyUser"
                     />
         </StackPanel>
     </Grid>

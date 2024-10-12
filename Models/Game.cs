@@ -8,6 +8,7 @@ namespace WPF_Dusza.Models
         public string OrganizerName { get; set; }
        
         public List<Participant> Participants { get; set; }
+        public string DisplayParticipants { get => Participants.DisplayList();}
         public bool IsGameOver { get; set; }
         public override string ToString()
         {

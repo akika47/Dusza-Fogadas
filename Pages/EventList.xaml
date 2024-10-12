@@ -8,6 +8,11 @@
         Title="EventList" Height="450" Width="800"
         Background="Gray"
         >
+    <Window.Resources>
+        <Style TargetType="ListViewItem">
+            <EventSetter Event="MouseDoubleClick" Handler="GameSelected"/>
+        </Style>
+    </Window.Resources>
     <Grid Grid.IsSharedSizeScope="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
@@ -32,13 +37,17 @@
             <Label Content="{Binding CurrentUser .Name}" Style="{StaticResource LabelStyle}"/>
             <Label Content="{Binding CurrentUser .Points}" Style="{StaticResource LabelStyle}"/>
         </StackPanel>
-        <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6" >
+        <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6">
+
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Játék neve" Width="132"/>
-                    <GridViewColumn Header="Szervező neve" Width="132"/>
-                    <GridViewColumn Header="Játékosok" Width="132"/>
-                    <GridViewColumn Header="Állapot" Width="132"/>
+                    <GridViewColumn Header="Játék neve" Width="132" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Szervező neve" Width="132"
+                                    DisplayMemberBinding="{Binding OrganizerName}"/>
+                    <GridViewColumn Header="Játékosok" Width="132"
+                                    DisplayMemberBinding="{Binding DisplayParticipants}"/>
+                    <GridViewColumn Header="Állapot" Width="132" 
+                                    DisplayMemberBinding="{Binding IsGameOver}"/>
                 </GridView>
             </ListView.View>
             <ListView.ItemTemplate>
@@ -58,6 +67,7 @@
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
+
         </ListView>
     </Grid>
 </Window>

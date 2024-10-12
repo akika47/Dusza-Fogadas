@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WPF_Dusza.Models;
 using WPF_Dusza.Repo;
 using WPF_Dusza.Utils;
-using WPF_Dusza.Models;
 
 namespace WPF_Dusza.Pages
 {
@@ -23,18 +12,19 @@ namespace WPF_Dusza.Pages
 	/// </summary>
 	public partial class bettingPage : Window
 	{
-		Game SelectedGame { get; set; }
-		BettingRepository _repo;
-		User? _currentUser;
+		public Game SelectedGame { get; set; }
+		readonly BettingRepository _repo;
+		readonly User? _currentUser;
 		Event _selectedEvent;
 		Participant _selectedParticipant;
 		public bettingPage(Game game, BettingRepository repo, User? user)
 		{
 			InitializeComponent();
 			SelectedGame = game;
+			DataContext = this;
 			_repo = repo;
 			_currentUser = user;
-			this.Loaded += async (o, e) => await FillComboboxes();
+			Loaded += async (o, e) => await FillComboboxes();
 			cbxEvents.MouseDoubleClick += SelectEvent;
 		}
 
@@ -66,8 +56,8 @@ namespace WPF_Dusza.Pages
 				WindowUtils.DisplayErrorMessage("Hiba, a pontok csak számok lehetnek");
 				return;
 			}
-			Bet bet = new Bet
-			{
+            Bet bet = new()
+            {
 				EventId = _selectedEvent.Id,
 				UserID = _currentUser!.Id,
 				ParticipantId = _selectedParticipant!.Id,
