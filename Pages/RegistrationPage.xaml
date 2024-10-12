@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:WPF_Dusza.Pages"
         mc:Ignorable="d"
         Title="RegistrationPage" Height="460" Width="300"
-        Background="Gray"
-        >
+        Background="#8BC34A">
+    <!-- Darker green background -->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -22,13 +22,17 @@
             <RowDefinition Height="40"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Image Source="\Images\profilePic.png"/>
+        <Image Source="\Images\profilePic.png" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
         <Label Grid.Row="1" Content="Felhasználónév" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Style="{StaticResource LabelStyle}"/>
         <TextBox x:Name="tb_UserName" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Style="{StaticResource TextBoxStyle}"/>
+
         <Label Grid.Row="3" Content="Jelszó" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Style="{StaticResource LabelStyle}"/>
         <PasswordBox x:Name="pb_Password" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Style="{StaticResource PasswordBoxStyle}"/>
+
         <Label Grid.Row="5" Content="Jelszó újra" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Style="{StaticResource LabelStyle}"/>
         <PasswordBox x:Name="pb_Confirm" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Style="{StaticResource PasswordBoxStyle}"/>
-        <Button Grid.Row="7" VerticalAlignment="Top" Content="Regisztrálás" Click="RegisterUser" Style="{StaticResource ButtonStyle}"/>
+
+        <Button Grid.Row="7" VerticalAlignment="Top" Content="Regisztrálás" Click="RegisterUser " Width="200" Style="{StaticResource ButtonStyle}"/>
     </Grid>
 </Window>

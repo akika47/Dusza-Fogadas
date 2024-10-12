@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:WPF_Dusza.Pages"
         mc:Ignorable="d"
         Title="EventList" Height="450" Width="800"
-        Background="Gray"
-        >
+        Background="#8BC34A">
+    <!-- Darker green background -->
     <Window.Resources>
         <Style TargetType="ListViewItem">
             <EventSetter Event="MouseDoubleClick" Handler="GameSelected"/>
@@ -29,25 +29,27 @@
         <Image Source="/Pages/profilePic.png" Grid.Column="5" Height="50" VerticalAlignment="Top" Width="100" HorizontalAlignment="Right" Margin="10">
             <Image.ContextMenu>
                 <ContextMenu>
-                    <MenuItem x:Name="mi_logout" Header="Kijelentkezés"/>
+                    <MenuItem x:Name="mi_logout" Header="Kijelentkezés" Style="{StaticResource MenuItemStyle}"/>
                 </ContextMenu>
             </Image.ContextMenu>
         </Image>
-        <StackPanel Grid.Column="4">
+        <StackPanel Grid.Column="4" Margin="10">
             <Label Content="{Binding CurrentUser .Name}" Style="{StaticResource LabelStyle}"/>
             <Label Content="{Binding CurrentUser .Points}" Style="{StaticResource LabelStyle}"/>
         </StackPanel>
-        <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6">
-
+        <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6" Style="{StaticResource ListViewStyle}">
             <ListView.View>
                 <GridView>
+                    <GridView.ColumnHeaderContainerStyle>
+                        <Style BasedOn="{StaticResource GridViewColumnHeaderStyle}" TargetType="GridViewColumnHeader"/>
+                    </GridView.ColumnHeaderContainerStyle>
                     <GridViewColumn Header="Játék neve" Width="132" DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Header="Szervező neve" Width="132"
-                                    DisplayMemberBinding="{Binding OrganizerName}"/>
+                        DisplayMemberBinding="{Binding OrganizerName}"/>
                     <GridViewColumn Header="Játékosok" Width="132"
-                                    DisplayMemberBinding="{Binding DisplayParticipants}"/>
-                    <GridViewColumn Header="Állapot" Width="132" 
-                                    DisplayMemberBinding="{Binding IsGameOver}"/>
+                        DisplayMemberBinding="{Binding DisplayParticipants}"/>
+                    <GridViewColumn Header="Állapot" Width="132"         
+                        DisplayMemberBinding="{Binding IsGameOver}"/>
                 </GridView>
             </ListView.View>
             <ListView.ItemTemplate>
@@ -62,8 +64,8 @@
                             <ColumnDefinition SharedSizeGroup="A" />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Games.Name}" Style="{StaticResource LabelStyle}"/>
-                        <Label Content="{Binding Games.OrganizerName}" Style="{StaticResource LabelStyle}"/>
-                        <Label Content="{Binding Games.Participants}" Style="{StaticResource LabelStyle}"/>
+                        <Label Content="{Binding Games.OrganizerName}" Style="{StaticResource LabelStyle}" Grid.Column="1"/>
+                        <Label Content="{Binding Games.Participants}" Style="{StaticResource LabelStyle}" Grid.Column="2"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

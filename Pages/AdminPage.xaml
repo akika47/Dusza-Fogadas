@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:WPF_Dusza.Pages"
         mc:Ignorable="d"
         Title="AdminPage" Height="450" Width="800"
-        Background="Gray"
-        >
+        Background="#8BC34A">
+    <!-- Darker green background -->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -23,9 +23,10 @@
                   Grid.Column="0"
                   Grid.Row="0"
                   Margin="10"
-                  Background="#EDE0D4"
                   BorderThickness="0" SelectionChanged="dtgOrganizers_SelectionChanged"
-                  ItemsSource="{Binding Users}">
+                  ItemsSource="{Binding Users}"
+                  Style="{StaticResource DataGridStyle}">
+                  >
             <DataGrid.Columns >
                 <DataGridTextColumn Width="1*" 
                                     Header="Név"  
@@ -39,7 +40,6 @@
                     Grid.Row="0"
                     Margin="10">
             <Button x:Name="btnLogOut"
-                Grid.Column="3"
                 Width="150"
                 Height="50" Style="{StaticResource ButtonStyle}">Kijelentkezés</Button>
 
@@ -80,7 +80,7 @@
                     Height="40"
                     Margin="5"
                     Style="{StaticResource ButtonStyle}"
-                    Click="AddUser"
+                    Click="AddUser "
                     />
             <Button x:Name="btnDeleteOrganizer"
                     Content="Szervező törlése"
@@ -95,7 +95,7 @@
                     Height="40"
                     Margin="5"
                     Style="{StaticResource ButtonStyle}"
-                    Click="ModifyUser"
+                    Click="ModifyUser "
                     />
         </StackPanel>
     </Grid>
