@@ -1,6 +1,5 @@
-DROP DATABASE IF EXISTS betting;
 -- Create the database
-CREATE DATABASE betting;
+CREATE DATABASE IF NOT EXISTS betting;
 
 -- Use the database
 USE betting;

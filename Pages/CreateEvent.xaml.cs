@@ -1,5 +1,8 @@
 ﻿using Org.BouncyCastle.Math.EC.Endo;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 using WPF_Dusza.Models;
 using WPF_Dusza.Repo;
 using WPF_Dusza.Utils;
@@ -13,7 +16,7 @@ namespace WPF_Dusza.Pages
     {
 
         readonly BettingRepository _repo;
-        GameRow DisplayRow, NewRow;
+        GameRow DisplayRow, NewRow, SelectedRow;
         readonly User? _currentUser;
         public CreateEvent(User? user, BettingRepository repo)
         {
@@ -23,23 +26,31 @@ namespace WPF_Dusza.Pages
             NewRow = new() { IsDisplay = false };
             Loaded += InitCreatedGames;
             lvEvents.Items.Add(NewRow);
+            lvEvents.MouseDown += LvEvents_MouseDown1;
+        }
+
+        private void LvEvents_MouseDown1(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if(e.LeftButton == MouseButtonState.Pressed)
+            {
+                var clickedItem = (ListViewItem)VisualTreeHelper.GetParent((DependencyObject)e.OriginalSource);
+                SelectedRow = (GameRow)clickedItem.Content;
+            }
+        }
+
+        private void LvEvents_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         async void InitCreatedGames(object sender, RoutedEventArgs e)
         {
-            var createdGames = _repo.GameRepository.GetGamesAsync().Where(x => x.OrganizerName == _currentUser.Name);
-            await foreach (Game game in createdGames)
+            List<GameRow> rows = await _repo.GameRepository.GetGamesAsync(_currentUser!);
+            foreach (GameRow row in rows) 
             {
-                GameRow row = new()
-                {
-                    GameName = game.Name,
-                    OrganizerName = game.OrganizerName,
-                    Participants = game.DisplayParticipants,
-                    Events = ,
-                    IsDisplay = true
-                };
                 lvEvents.Items.Add(row);
             }
+
         }
 
         async void CreateEventAsync(object sender, RoutedEventArgs e)
@@ -77,7 +88,17 @@ namespace WPF_Dusza.Pages
                 DisplayRow = new() { IsDisplay = false };
             });
         }
-
+        async void CloseGame(object sender, RoutedEventArgs e)
+        {
+            int Id = await _repo.GameRepository.GetGamesAsync().Where(x => x.Name == SelectedRow.GameName).Select(x => x.Id).FirstAsync();
+            Game game = new()
+            {
+                Id = Id,
+                Name = SelectedRow.GameName,
+                OrganizerName = SelectedRow.OrganizerName,
+            };
+            await _repo.GameRepository.CloseGameAsync(game);
+        }
 
     }
 }

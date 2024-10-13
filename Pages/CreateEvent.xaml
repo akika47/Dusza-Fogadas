@@ -15,7 +15,7 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Játék lezárása" /> 
+                        <MenuItem Header="Játék lezárása"  Click="CloseGame"/> 
                     </ContextMenu>
                 </StackPanel.ContextMenu>
                 <TextBlock Text="{Binding GameName}" Width="150" />
