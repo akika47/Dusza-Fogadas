@@ -19,23 +19,24 @@ INSERT INTO participants (name) VALUES
 ('László');
 
 INSERT INTO users (name, password, points, role) VALUES
-('Kódokátor', 'password123', 0, 1),
-('Kódfejlesztő', 'password123', 0, 1),
-('AlgoMester', 'password123', 0, 1),
-('AlgoBajnok', 'password123', 0, 1),
-('Kódolók Klubja', 'password123', 0, 1);
+('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 0, 0),
+('Kódokátor', '0b14d501a594442a01c6859541bcb3e8164d183d32937b851835442f69d5c94e', 0, 1),
+('Kódfejlesztő', '6cf615d5bcaac778352a8f1f3360d23f02f34ec182e259897fd6ce485d7870d4', 0, 1),
+('AlgoMester', '5906ac361a137e2d286465cd6588ebb5ac3f5ae955001100bc41577c3d751764', 0, 1),
+('AlgoBajnok', 'b97873a40f73abedd8d685a7cd5e5f85e4a9cfb83eac26886640a0813850122b', 0, 1),
+('Kódolók Klubja', '8b2c86ea9cf2ea4eb517fd1e06b74f399e7fec0fef92e3b482a6cf2e2b092023', 0, 1);
 
 INSERT INTO games (name, userId, status) VALUES
-('Kódverseny', 1, 0),
-('Fejlesztő Fesztivál', 2, 0),
-('Algoritmus Verseny', 3, 0),
-('Kódoló Kupa', 4, 0),
-('Fejlesztő Fesztivál', 2, 0),
-('Algoritmus Bajnokság', 3, 0),
-('Kódoló Kupa', 4, 0),
-('Fejlesztő Fesztivál', 2, 0),
-('Algoritmus Verseny', 3, 0),
-('Kódoló Kupa', 4, 0);
+('Kódverseny', 2, 0),
+('Fejlesztő Fesztivál', 3, 0),
+('Algoritmus Verseny', 4, 0),
+('Kódoló Kupa', 5, 0),
+('Fejlesztő Fesztivál', 3, 0),
+('Algoritmus Bajnokság', 4, 0),
+('Kódoló Kupa', 5, 0),
+('Fejlesztő Fesztivál', 3, 0),
+('Algoritmus Verseny', 4, 0),
+('Kódoló Kupa', 5, 0);
 
 
 INSERT INTO events (eventName, gameId) VALUES
@@ -68,3 +69,23 @@ INSERT INTO events (eventName, gameId) VALUES
 ('Erzsébet programja 1 percen belül befejeződik', 7),
 ('Fanni programja nem használja a tiltott funkciót', 7),
 ('Gábor programja sikeresen csatlakozik az adatbázishoz', 8);
+
+INSERT INTO gameparticipants (gameId, participantId) VALUES
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 4),
+(3, 5),
+(3, 6),
+(4, 7),
+(4, 8),
+(5, 9),
+(5, 10),
+(6, 11),
+(6, 12),
+(7, 13),
+(7, 14),
+(8, 15),
+(8, 16),
+(9, 17),
+(9, 18);

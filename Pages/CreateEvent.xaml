@@ -19,10 +19,10 @@
                         <MenuItem Header="Játék lezárása" Style="{StaticResource MenuItemStyle}"/>
                     </ContextMenu>
                 </StackPanel.ContextMenu>
-                <TextBlock Text="{Binding GameName}" Width="150" Style="{StaticResource LabelStyle}"/>
-                <TextBlock Text="{Binding OrganizerName}" Width="150" Style="{StaticResource LabelStyle}"/>
-                <TextBlock Text="{Binding Participants}" Width="150" Style="{StaticResource LabelStyle}"/>
-                <TextBlock Text="{Binding Events}" Width="150" Style="{StaticResource LabelStyle}"/>
+                <TextBlock Text="{Binding GameName}" Width="150" />
+                <TextBlock Text="{Binding OrganizerName}" Width="150" />
+                <TextBlock Text="{Binding Participants}" Width="150" />
+                <TextBlock Text="{Binding Events}" Width="150" />
        
   </StackPanel>
         </DataTemplate>
