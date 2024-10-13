@@ -19,7 +19,7 @@ adminisztrációs oldal(szervezők felvevése, stb.)
 - [töltsd le a xamppot ha esetleg nincs meg](https://www.apachefriends.org/hu/index.html)
 - Ha le van töltve, akkor indítsd el és indítsd el az Apache és a Mysql szervert a kezelő panelen
 - A Database mappán belül betting.sql néven van az adatbázis elmentve
-- Ezt az adatbázist importáld a phpMyAdminnál
+- Ezt az adatbázist importáld a [phpMyAdminnál](http://localhost/phpmyadmin/index.php)
 - Ha ezzel kész vagy, akkor indíts el a Visual Studio 2022-t ([letöltési link ha esetleg nincs meg](https://visualstudio.microsoft.com/vs/))
 - Nyisd meg a WPF_DUSZA.sln fájl (jobb klikk -> Társítás -> Visual Studio 2022)
 - ![image](https://github.com/user-attachments/assets/9cc795a9-6b34-40bb-96fe-aa0e8b387e15) <- kattints erre a fülre
