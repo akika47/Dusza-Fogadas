@@ -31,9 +31,6 @@
                 <DataGridTextColumn Width="1*" 
                                     Header="Név"  
                                     Binding="{Binding Name}"/>
-                <DataGridTextColumn Width="1*" 
-                                    Header="Jelszó"  
-                                    Binding="{Binding Password}"/>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Column="1"
@@ -54,24 +51,15 @@
                                          />
 
             <Label Content="Jelszó:" Style="{StaticResource LabelStyle}"/>
-            <TextBox x:Name="txtOrganizerPassword"
+            <PasswordBox x:Name="txtOrganizerPassword"
                      Width="200"
                      Height="30"
                      Margin="5"
                      FontSize="15"
                      VerticalContentAlignment="Center" 
-                     Style="{StaticResource TextBoxStyle}"
+                     Style="{StaticResource PasswordBoxStyle}"
                                          />
 
-            <Label Content="Jelszó mégegyszer:" Style="{StaticResource LabelStyle}" />
-            <TextBox x:Name="txtOrganizerPasswordAgain"
-                     Width="200"
-                     Height="30"
-                     Margin="5"
-                     FontSize="15"
-                     VerticalContentAlignment="Center"
-                     Style="{StaticResource TextBoxStyle}"
-                     />
 
 
             <Button x:Name="btnAddOrganizer"

@@ -1,5 +1,5 @@
 Szerepkörök:
 
-Szervező(Eseményeket tud szervezni)
-Felhasználó(Fogadni tud)
-Adminisztrátor(Szervezőket tud felvenni)
+Szervező: Játékokat tud készíteni és lezárni
+Felhasználó: nem fér hozzá semmihez, csakis fogadni tud
+Adminisztrátor: Hozzáfér a user táblához és tudja változtatni a szervezőket, törölni őket, vagy újat felvenni

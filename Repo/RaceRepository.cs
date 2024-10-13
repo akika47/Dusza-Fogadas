@@ -140,6 +140,7 @@ namespace WPF_Dusza.Repo
                 yield return @event;
             }
         }
+
         public async Task<List<Participant>> GetParticipantsAsync(int ID)
         {
             cmd = $"SELECT id,name FROM participants INNER JOIN gameparticipants ON gameparticipants.participantid=participants.id WHERE gameparticipants.gameId={ID};";
@@ -155,6 +156,7 @@ namespace WPF_Dusza.Repo
             }
             return Participants;
         }
+
 
 
         public async Task CreateNewGameAsync(User user, Game game, List<Event> events, List<Participant> participants)

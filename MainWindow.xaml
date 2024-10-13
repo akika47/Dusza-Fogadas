@@ -32,7 +32,7 @@
             <PasswordBox x:Name="pb_Password" VerticalAlignment="Top" Width="140" Margin="5" Style="{StaticResource PasswordBoxStyle}"/>
             <Button Content="Belépés" Margin="5" Click="ValidateLogin" Style="{StaticResource ButtonStyle}"/>
             <Button Content="Regisztrálás" Margin="5" Click="RegisterUser " Style="{StaticResource ButtonStyle}"/>
-            <Button Content="bettingpage" Click="Button_Click" Margin="5" Style="{StaticResource ButtonStyle}"/>
+
         </StackPanel>
 
         <Image gif:AnimationBehavior.SourceUri="/Files/gamblecore.gif" Grid.Column="1" Grid.RowSpan="5"/>
