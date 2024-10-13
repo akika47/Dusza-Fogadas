@@ -167,6 +167,10 @@ namespace WPF_Dusza.Repo
             await AddNewEventsAsync(conn, events, game.Id);
             await AddNewParticipantsAsync(conn, participants, game.Id);
         }
+        async Task AddNewParticipantsAsync(MySqlConnection conn, List<Participant> participants, int GameId)
+        {
+
+        }
 
         async Task AddNewEventsAsync(MySqlConnection conn, List<Event> events, int gameId)
         {

@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
         Title="MainWindow" Height="450" Width="800"
-        Background="gray"
-        >
+        Background="#8BC34A">
+    <!-- Darker green background -->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="155"/>
@@ -21,17 +21,20 @@
             <RowDefinition Height="40"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Image Source="/profilePic.png"/>
-        <Label Content="Felhasználónév" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{StaticResource LabelStyle}"/>
-        <TextBox x:Name="tb_UserName" Grid.Row="2" VerticalAlignment="Center" Margin="5" Style="{StaticResource TextBoxStyle}"/>
-        <Label Content="Jelszó" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{StaticResource LabelStyle}"/>
-        <StackPanel Grid.Row="4">
-            <PasswordBox x:Name="pb_Password" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Center" Width="140" Margin="5" Style="{StaticResource PasswordBoxStyle}"/>
+        <Image Source="/profilePic.png" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+
+        <StackPanel Grid.Row="1" Grid.RowSpan="4" HorizontalAlignment="Center" Margin="5">
+            <Label Content="Felhasználónév" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{StaticResource LabelStyle}"/>
+            <TextBox x:Name="tb_UserName" Grid.Row="2" VerticalAlignment="Center" Margin="5" Width="140" Style="{StaticResource TextBoxStyle}"/>
+
+            <Label Content="Jelszó" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{StaticResource LabelStyle}"/>
+            <PasswordBox x:Name="pb_Password" VerticalAlignment="Top" Width="140" Margin="5" Style="{StaticResource PasswordBoxStyle}"/>
             <Button Content="Belépés" Margin="5" Click="ValidateLogin" Style="{StaticResource ButtonStyle}"/>
-            <Button Content="Regisztrálás" Margin="5" Click="RegisterUser" Style="{StaticResource ButtonStyle}"/>
-            <Button Content="bettingpage" Click="Button_Click"/>
+            <Button Content="Regisztrálás" Margin="5" Click="RegisterUser " Style="{StaticResource ButtonStyle}"/>
+            <Button Content="bettingpage" Click="Button_Click" Margin="5" Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
-          
+
         <Image gif:AnimationBehavior.SourceUri="/Files/gamblecore.gif" Grid.Column="1" Grid.RowSpan="5"/>
     </Grid>
 </Window>

@@ -3,43 +3,39 @@
                     xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Luna">
 
     <!--#region Colors-->
-    <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#FF6D6D6D" />
+        <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#FFC6E2B5" />
     <!--#endregion-->
-    
-    
-    <!--#region ButtonStyle-->
-        <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="#A9A9A9"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="5" BorderThickness="1" Padding="6,4,6,4" Background="{TemplateBinding Background}" BorderBrush="#393939">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Setter Property="Background" Value="LightGray"/>
-                                <Setter Property="Foreground" Value="#000000" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
 
-                </Setter.Value>
-            </Setter>
+    <!--#region ButtonStyle-->
+    <Style x:Key="ButtonStyle" TargetType="Button">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="#34C759"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5" BorderThickness="1" Padding="6,4,6,4" Background="{TemplateBinding Background}" BorderBrush="#2F4F4F">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Background" Value="#2ECC71"/>
+                            <Setter Property="Foreground" Value="#000000" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
     </Style>
     <!--#endregion-->
-    
-    
-
 
     <!--#region TextBoxStyle-->
     <Style TargetType="TextBox" x:Key="TextBoxStyle">
         <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="Background" Value="LightGray"/>
+        <Setter Property="Background" Value="#C6E2B5"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Padding" Value="3"/>
     </Style>
@@ -48,7 +44,7 @@
     <!--#region PasswordBoxStyle-->
     <Style TargetType="PasswordBox" x:Key="PasswordBoxStyle">
         <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="Background" Value="LightGray"/>
+        <Setter Property="Background" Value="#C6E2B5"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Padding" Value="3"/>
     </Style>
@@ -56,28 +52,114 @@
 
     <!--#region LabelStyle-->
     <Style TargetType="Label" x:Key="LabelStyle">
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Padding" Value="2"/>
     </Style>
     <!--#endregion-->
+    
     <!--#region ComboboxStyle-->
+
     <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
-        <Setter Property="Background" Value="#FFC5C5C5"/>
+        <Setter Property="Background" Value="#C6E2B5"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="BorderBrush" Value="#FF959595"/>
-        <Setter Property="Foreground" Value="#FF000000"/>
+        <Setter Property="BorderBrush" Value="#2F4F4F"/>
+        <Setter Property="Foreground" Value="#000000"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Padding" Value="5"/>
+        <Setter Property="Height" Value="60"/>
+
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="BorderBrush" Value="LightGray"/>
+                <Setter Property="BorderBrush" Value="#34C759"/>
             </Trigger>
             <Trigger Property="IsFocused" Value="true">
-                <Setter Property="BorderBrush" Value="LightGray"/>
+                <Setter Property="BorderBrush" Value="#34C759"/>
             </Trigger>
         </Style.Triggers>
     </Style>
 
     <!--#endregion-->
+
+    <!--#region DataGridStyle-->
+    <Style x:Key="DataGridStyle" TargetType="DataGrid">
+        <Setter Property="Background" Value="DarkSeaGreen"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="RowHeight" Value="30"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="CellStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Background" Value="#C6E2B5"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#8BC34A"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="RowStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="#C6E2B5"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#8BC34A"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ColumnHeaderStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#8BC34A"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region ListViewStyle-->
+    <Style x:Key="ListViewStyle" TargetType="ListView">
+        <Setter Property="Background" Value="#C6E2B5"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#2F4F4F"/>
+        <Setter Property="Foreground" Value="#000000"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="5"/>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region MenuItemStyle-->
+    <Style x:Key="MenuItemStyle" TargetType="MenuItem">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Background" Value="#C6E2B5"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="3"/>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region GridViewColumnHeaderStyle-->
+    <Style x:Key="GridViewColumnHeaderStyle" TargetType="GridViewColumnHeader">
+        <Setter Property="Background" Value="#34C759"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Padding" Value="5"/>
+    </Style>
+    <!--#endregion-->
+
 </ResourceDictionary>
