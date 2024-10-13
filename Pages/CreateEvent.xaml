@@ -7,7 +7,7 @@
         xmlns:selector="clr-namespace:WPF_Dusza.Utils"
         mc:Ignorable="d"
         Title="CreateEvent" Height="450" Width="800"
-        Background="Gray"
+        Background="#8BC34A"
         >
     <Window.Resources>
         <selector:EventDataTemplateSelector x:Key="eventTemplateSelector"/>
@@ -16,22 +16,16 @@
 
                 <StackPanel.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Játék lezárása" /> 
+                        <MenuItem Header="Játék lezárása" Style="{StaticResource MenuItemStyle}"/>
                     </ContextMenu>
                 </StackPanel.ContextMenu>
-                <TextBlock Text="{Binding GameName}" Width="150" />
-                <TextBlock Text="{Binding OrganizerName}" Width="150" />
-                <TextBlock Text="{Binding Participants}" Width="150" />
-                <TextBlock Text="{Binding Events}" Width="150" />
-
-
-                <TextBlock Text="{Binding GameName}" Width="150" Style="{StaticResource TextBlockStyle}"/>
-                <TextBlock Text="{Binding OrganizerName}" Width="150" Style="{StaticResource TextBlockStyle}"/>
-                <TextBlock Text="{Binding Participants}" Width="150" Style="{StaticResource TextBlockStyle}"/>
-                <TextBlock Text="{Binding Events}" Width="150" Style="{StaticResource TextBlockStyle}"/>
-
+                <TextBlock Text="{Binding GameName}" Width="150" Style="{StaticResource LabelStyle}"/>
+                <TextBlock Text="{Binding OrganizerName}" Width="150" Style="{StaticResource LabelStyle}"/>
+                <TextBlock Text="{Binding Participants}" Width="150" Style="{StaticResource LabelStyle}"/>
+                <TextBlock Text="{Binding Events}" Width="150" Style="{StaticResource LabelStyle}"/>
             </StackPanel>
         </DataTemplate>
+
         <DataTemplate x:Key="RowTemplate">
             <StackPanel Orientation="Horizontal">
 
@@ -42,7 +36,6 @@
                 <Button Content="Új játék létrehozása" Click="CreateEventAsync" Style="{StaticResource ButtonStyle}"/>
             </StackPanel>
         </DataTemplate>
-
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -61,14 +54,14 @@
         <!--testing-->
 
 
-        <Label Content="Játék neve" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Style="{StaticResource LabelStyle}"/>
-        <Label Content="Szervező neve" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Style="{StaticResource LabelStyle}"/>
-        <Label Content="Játékosok" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Style="{StaticResource LabelStyle}"/>
+        <Label Content="Játék neve" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource LabelStyle}"/>
+        <Label Content="Szervező neve" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource LabelStyle}"/>
+        <Label Content="Játékosok" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource LabelStyle}"/>
 
-        <Label Content="Események" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Style="{StaticResource LabelStyle}"/>
+        <Label Content="Események" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource LabelStyle}"/>
         <Image Source="\Images\profilePic.png" Grid.Column="5" Height="100" Width="100"/>
 
-        <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6" ItemTemplateSelector="{StaticResource eventTemplateSelector}">
+        <ListView x:Name="lvEvents" Grid.Row="1" Grid.ColumnSpan="6" ItemTemplateSelector="{StaticResource eventTemplateSelector}" Style="{StaticResource ListViewStyle}">
         </ListView>
     </Grid>
 </Window>

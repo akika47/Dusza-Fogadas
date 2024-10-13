@@ -66,5 +66,31 @@ namespace WPF_Dusza.Pages
 			};
 			await _repo.BetRepository.PlaceBetAsync(bet);
 		}
+
+		private void TextBox_MouseEnter(object sender, MouseEventArgs e)
+		{
+			var textBox = (TextBox)sender;
+			if (textBox.ToolTip != null)
+			{
+				var toolTip = textBox.ToolTip as ToolTip;
+				if (toolTip != null)
+				{
+					toolTip.IsOpen = true;
+				}
+			}
+		}
+
+		private void TextBox_MouseLeave(object sender, MouseEventArgs e)
+		{
+			var textBox = (TextBox)sender;
+			if (textBox.ToolTip != null)
+			{
+				var toolTip = textBox.ToolTip as ToolTip;
+				if (toolTip != null)
+				{
+					toolTip.IsOpen = false;
+				}
+			}
+		}
 	}
 }
