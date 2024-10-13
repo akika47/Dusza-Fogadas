@@ -57,7 +57,5 @@ CREATE TABLE results (
   id INT PRIMARY KEY AUTO_INCREMENT,
   eventId INT,
   result VARCHAR(255),
-  participantId INT,
-  FOREIGN KEY (eventId) REFERENCES events(id),
-  FOREIGN KEY (participantId) REFERENCES participants(id)
+  FOREIGN KEY (eventId) REFERENCES events(id)
 );
