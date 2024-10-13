@@ -39,4 +39,10 @@
     <Resource Include="profilePic.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Database\Database_Mysql.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

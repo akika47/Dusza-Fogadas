@@ -13,9 +13,9 @@
         <selector:EventDataTemplateSelector x:Key="eventTemplateSelector"/>
         <DataTemplate x:Key="DisplayTemplate">
             <StackPanel Orientation="Horizontal">
-
                 <StackPanel.ContextMenu>
                     <ContextMenu>
+
                         <MenuItem Header="Játék lezárása" Style="{StaticResource MenuItemStyle}"/>
                     </ContextMenu>
                 </StackPanel.ContextMenu>
@@ -23,7 +23,8 @@
                 <TextBlock Text="{Binding OrganizerName}" Width="150" Style="{StaticResource LabelStyle}"/>
                 <TextBlock Text="{Binding Participants}" Width="150" Style="{StaticResource LabelStyle}"/>
                 <TextBlock Text="{Binding Events}" Width="150" Style="{StaticResource LabelStyle}"/>
-            </StackPanel>
+       
+  </StackPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="RowTemplate">

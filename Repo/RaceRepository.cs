@@ -1,4 +1,5 @@
 using MySql.Data.MySqlClient;
+using System.Runtime.InteropServices;
 using System.Text;
 using WPF_Dusza.Models;
 namespace WPF_Dusza.Repo
@@ -70,7 +71,7 @@ namespace WPF_Dusza.Repo
         {
             cmd = $"DELETE FROM users WHERE id={id}";
             using MySqlConnection conn = GetConnection();
-            using MySqlCommand command = new(cmd,conn);
+            using MySqlCommand command = new(cmd, conn);
             await conn.OpenAsync();
             await command.ExecuteNonQueryAsync();
         }
@@ -103,10 +104,46 @@ namespace WPF_Dusza.Repo
 
             }
         }
+        public async Task<List<GameRow>> GetGamesAsync(User user)
+        {
+            List<GameRow> result = [];
+            var allGames = await GetGamesAsync().Where(x => x.OrganizerName == user.Name).ToListAsync();
+            foreach (Game game in allGames)
+            {
+                GameRow row = new()
+                {
+
+                    GameName = game.Name,
+                    OrganizerName = user.Name,
+                    Participants = string.Join("\n", await GetParticipantsAsync(game.Id)),
+                    Events = string.Join("\n", await GetEventsAsync(game.Id).ToListAsync()),
+                    IsDisplay = true
+                };
+                result.Add(row);
+            }
+            return result;
+        }
+        async IAsyncEnumerable<Event> GetEventsAsync(int ID)
+        {
+            cmd = $"SELECT id,eventName FROM events WHERE gameId={ID}";
+            using MySqlConnection conn = GetConnection();
+            await conn.OpenAsync();
+            using MySqlCommand command = new(cmd, conn);
+            using MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                Event @event = new()
+                {
+                    Id = reader.GetInt32(0),
+                    Name = reader.GetString(1),
+                };
+                yield return @event;
+            }
+        }
+
         public async Task<List<Participant>> GetParticipantsAsync(int ID)
         {
-            cmd = $"SELECT id,name FROM participants WHERE INNER JOIN gameparticipants ON gameparticipants.participantid=participants.id" +
-                $"WHERE gameparticipants.gameId={ID}";
+            cmd = $"SELECT id,name FROM participants INNER JOIN gameparticipants ON gameparticipants.participantid=participants.id WHERE gameparticipants.gameId={ID};";
             using MySqlConnection conn = GetConnection();
             using MySqlCommand command = new(cmd, conn);
             await conn.OpenAsync();
@@ -114,7 +151,8 @@ namespace WPF_Dusza.Repo
             List<Participant> Participants = [];
             while (await reader.ReadAsync())
             {
-                Participants.Add(new() { Id = reader.GetInt32(0), Name = reader.GetString(0) });
+                Participants.Add(new() { Id = reader.GetInt32(0), Name = reader.GetString(1) });
+
             }
             return Participants;
         }
@@ -122,7 +160,6 @@ namespace WPF_Dusza.Repo
 
 
         public async Task CreateNewGameAsync(User user, Game game, List<Event> events, List<Participant> participants)
-
         {
             cmd = "INSERT INTO games(name, userId, status) VALUES(@name,@userId,@status) ";
             using MySqlConnection conn = GetConnection();
@@ -135,13 +172,17 @@ namespace WPF_Dusza.Repo
             await AddNewEventsAsync(conn, events, game.Id);
             await AddNewParticipantsAsync(conn, participants, game.Id);
         }
+        async Task AddNewParticipantsAsync(MySqlConnection conn, List<Participant> participants, int GameId)
+        {
+
+        }
 
         async Task AddNewEventsAsync(MySqlConnection conn, List<Event> events, int gameId)
         {
             // Batch insert
             cmd = $"INSERT INTO events(eventName, gameId) VALUES ";
             List<string> rows = [];
-            foreach(Event e in events)
+            foreach (Event e in events)
             {
                 rows.Add($"('{MySqlHelper.EscapeString(e.Name)}',{gameId})");
             }
@@ -149,17 +190,31 @@ namespace WPF_Dusza.Repo
             using MySqlCommand command = new(cmd, conn);
             await command.ExecuteNonQueryAsync();
         }
-        async Task AddNewParticipantsAsync(MySqlConnection conn, List<Participant> participants, int GameId)
+        public async Task AddNewParticipantsAsync(MySqlConnection conn, List<Participant> participants, int gameId)
         {
-
+            using MySqlCommand command = new();
+            command.Connection = conn;
+            foreach (Participant participant in participants)
+            {
+                command.CommandText = $"INSERT INTO participants(name) VALUES('{MySqlHelper.EscapeString(participant.Name)}')";
+                await command.ExecuteNonQueryAsync();
+                participant.Id = (int)command.LastInsertedId;
+            }
+            command.CommandText = $"INSERT INTO gameparticipants(gameId, participantId) VALUES ";
+            foreach (Participant participant in participants)
+            {
+                command.CommandText += $"({gameId}, {participant.Id}),"; 
+            }
+            command.CommandText.Remove(command.CommandText.Length - 1, 1);
+            command.CommandText += ';';
+            await command.ExecuteNonQueryAsync();
         }
-
         public async Task CloseGameAsync(Game game)
         {
             cmd = $"UPDATE TABLE games SET status={game.IsGameOver} WHERE id={game.Id}";
             using MySqlConnection conn = GetConnection();
-            using MySqlCommand command = new(cmd, conn);
             await conn.OpenAsync();
+            using MySqlCommand command = new(cmd, conn);
             await command.ExecuteNonQueryAsync();
         }
 
@@ -205,7 +260,7 @@ namespace WPF_Dusza.Repo
 
         }
     }
-    public sealed class ResultRepo : RepositoryBase 
+    public sealed class ResultRepo : RepositoryBase
     {
         public async IAsyncEnumerable<Result> GetResultsAsync(Game game)
         {
@@ -213,14 +268,13 @@ namespace WPF_Dusza.Repo
             cmd = $"SELECT e.eventName AS event_name, u.name AS user_name, b.prediction AS user_prediction " +
                 $"FROM events AS e JOIN gameparticipants AS gp ON e.id = gp.gameld " +
                 $"JOIN bets AS b ON gp.participantid = b.participantid JOIN users AS u ON " +
-                $"b.userld = u.id; where gp.gameId={game.Id}";
-
+                $"b.userld = u.id where gp.gameId={game.Id}";
 
             using MySqlConnection conn = GetConnection();
             using MySqlCommand command = new(cmd, conn);
             await conn.OpenAsync();
             using MySqlDataReader reader = command.ExecuteReader();
-            while(await reader.ReadAsync())
+            while (await reader.ReadAsync())
             {
 
                 Result result = new()
@@ -228,7 +282,6 @@ namespace WPF_Dusza.Repo
                     EventName = reader.GetString(0),
                     Prediction = reader.GetString(1),
                     EventResult = reader.GetString(2)
-
                 };
                 yield return result;
             }

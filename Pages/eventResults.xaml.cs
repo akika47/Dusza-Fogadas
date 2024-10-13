@@ -33,12 +33,13 @@ namespace WPF_Dusza.Pages
 			_repo = repo;
 			_selectedGame = game;
 			InitializeComponent();
-			Task.Run(async () =>
-			{
-				Results = await _repo.ResultRepository.GetResultsAsync(_selectedGame).ToListAsync();
-			});
-
+            Loaded += Get_Results;
 			DataContext = this;
 		}
-	}
+
+        private async void Get_Results(object sender, RoutedEventArgs e)
+        {
+			Results = await _repo.ResultRepository.GetResultsAsync(_selectedGame).ToListAsync();
+        }
+    }
 }

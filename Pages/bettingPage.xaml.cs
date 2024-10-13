@@ -14,7 +14,7 @@ namespace WPF_Dusza.Pages
 	{
 		public Game SelectedGame { get; set; }
 		readonly BettingRepository _repo;
-		readonly User? _currentUser;
+		User? _currentUser;
 		Event _selectedEvent;
 		Participant _selectedParticipant;
 		public bettingPage(Game game, BettingRepository repo, User? user)
@@ -64,7 +64,10 @@ namespace WPF_Dusza.Pages
 				Prediction = txtPrediction.Text,
 				BetAmount = betAmount
 			};
+			User modifiedUser = _currentUser with { Points = _currentUser.Points - betAmount};
 			await _repo.BetRepository.PlaceBetAsync(bet);
+			await _repo.UserRepository.ModifyUserAsync(modifiedUser);
+			_currentUser = modifiedUser;
 		}
 
 		private void TextBox_MouseEnter(object sender, MouseEventArgs e)
