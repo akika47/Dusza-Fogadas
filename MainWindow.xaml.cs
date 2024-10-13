@@ -60,11 +60,6 @@ namespace WPF_Dusza
         }
 
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            _currentWindow = new bettingPage();
-            WindowUtils.ShowOtherWindow(this, _currentWindow);
-        }
 
     }
 }
