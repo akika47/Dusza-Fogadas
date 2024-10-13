@@ -47,17 +47,7 @@ namespace WPF_Dusza.Pages
         {
             List<GameRow> rows = await _repo.GameRepository.GetGamesAsync(_currentUser!);
             foreach (GameRow row in rows) 
-            {
-
-                GameRow row = new()
-                {
-                    GameName = game.Name,
-                    OrganizerName = game.OrganizerName,
-                    Participants = game.DisplayParticipants,
-					//Events = ,
-                    IsDisplay = true
-                };
-
+            {  
                 lvEvents.Items.Add(row);
             }
 

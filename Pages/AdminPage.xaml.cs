@@ -29,19 +29,30 @@ namespace WPF_Dusza.Pages
         User _selectedUser;
         public AdminPage(BettingRepository repo)
         {
+            InitializeComponent();
             _repo = repo;
-            Task.Run(async () =>
-            {
-                var result = await _repo.UserRepository.GetAllUsersAsync()
+
+            Users = new ObservableCollection<User>();
+            DataContext = this;
+
+            LoadUsers();
+        }
+
+        private async void LoadUsers()
+        {
+            var result = await _repo.UserRepository.GetAllUsersAsync()
                 .Where(x => x.Role == 1)
                 .ToListAsync();
-                Users = new(result);
-            });
-            InitializeComponent();
-            DataContext = this;
-            Users!.CollectionChanged += HandleCollectionChanged;
+
+            Users.Clear();
+
+            foreach (var user in result)
+            {
+                Users.Add(user);
+            }
+
         }
-        
+
         void AddUser(object sender, RoutedEventArgs e)
         {
            if(SameUser())
@@ -63,7 +74,7 @@ namespace WPF_Dusza.Pages
                 WindowUtils.DisplayErrorMessage("A szervezőt nem módosítottad!");
                 return;
             }
-            User ModifiedUser = _selectedUser with {Name = txtOrganizerName.Text, Password = txtOrganizerPassword.Password };
+            User ModifiedUser = _selectedUser with {Name = txtOrganizerName.Text };
             Users[Users.IndexOf(_selectedUser)] = ModifiedUser;
         }
         void DeleteUser(object sender, RoutedEventArgs e)
@@ -93,10 +104,13 @@ namespace WPF_Dusza.Pages
 
         private void dtgOrganizers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _selectedUser = (User)(sender as DataGrid)!.SelectedItem;
-            if(_selectedUser == null) return;
-            txtOrganizerName.Text = _selectedUser.Name;
-            txtOrganizerPassword.Password = _selectedUser.Password;
+            if ((sender as DataGrid).SelectedItem is (User))
+            {
+                _selectedUser = (User)(sender as DataGrid)!.SelectedItem;
+                if (_selectedUser == null) return;
+                txtOrganizerName.Text = _selectedUser.Name;
+            }
+
         }
     }
 }

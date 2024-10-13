@@ -40,6 +40,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Database\data.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Database\Database_Mysql.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
