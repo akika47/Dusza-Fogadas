@@ -119,21 +119,6 @@ namespace WPF_Dusza.Repo
             return Participants;
         }
 
-        public async Task<List<Participant>> GetParticipantsAsync(int ID)
-        {
-            cmd = $"SELECT id,name FROM participants INNER JOIN gameparticipants ON gameparticipants.participantid=participants.id WHERE gameparticipants.gameId={ID};";
-            using MySqlConnection conn = GetConnection();
-            using MySqlCommand command = new(cmd, conn);
-            await conn.OpenAsync();
-            using MySqlDataReader reader = command.ExecuteReader();
-            List<Participant> Participants = [];
-            while (await reader.ReadAsync())
-            {
-                Participants.Add(new() { Id = reader.GetInt32(0), Name = reader.GetString(1) });
-
-            }
-            return Participants;
-        }
 
 
         public async Task CreateNewGameAsync(User user, Game game, List<Event> events, List<Participant> participants)

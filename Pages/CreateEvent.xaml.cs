@@ -35,7 +35,7 @@ namespace WPF_Dusza.Pages
                     GameName = game.Name,
                     OrganizerName = game.OrganizerName,
                     Participants = game.DisplayParticipants,
-					Events = ,
+					//Events = ,
                     IsDisplay = true
                 };
                 lvEvents.Items.Add(row);

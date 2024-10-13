@@ -45,9 +45,17 @@
                 <ComboBoxItem Content="Melyik játékosra fogadsz?" IsSelected="True" />
             </ComboBox>
 
-            <TextBox x:Name="txtPrediction" Width="200" Height="60"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Margin="10" Style="{StaticResource TextBoxStyle}"/>
+            <TextBox x:Name="txtPrediction" Width="200" Height="60"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Margin="10" Style="{StaticResource TextBoxStyle}"  MouseEnter="TextBox_MouseEnter" MouseLeave="TextBox_MouseLeave">
+                <TextBox.ToolTip>
+                    <ToolTip>Mi a tipped?</ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
 
-            <TextBox x:Name="txtBetAmount" Width="200" Height="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Style="{StaticResource TextBoxStyle}"/>
+            <TextBox x:Name="txtBetAmount" Width="200" Height="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Style="{StaticResource TextBoxStyle}" MouseEnter="TextBox_MouseEnter" MouseLeave="TextBox_MouseLeave">
+                <TextBox.ToolTip>
+                    <ToolTip>Mennyi pontot teszel rá?</ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
 
             <Button x:Name="btnBet" Content="Fogadás" Height="60" Width="200" Margin="10" FontSize="20" Style="{StaticResource ButtonStyle}"/>
         </StackPanel>

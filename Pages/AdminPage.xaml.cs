@@ -50,12 +50,12 @@ namespace WPF_Dusza.Pages
                 return;
             }
            User NewUser = _selectedUser with { Name = txtOrganizerName.Text, 
-               Password = Hashing.HashPassword(txtOrganizerPassword.Text) };
+               Password = Hashing.HashPassword(txtOrganizerPassword.Password) };
            Users.Add(NewUser);  
 
         }
         bool SameUser() => _selectedUser.Name == txtOrganizerName.Text &&
-              _selectedUser.Password == txtOrganizerPassword.Text;
+              _selectedUser.Password == txtOrganizerPassword.Password;
         void ModifyUser(object sender, RoutedEventArgs e) 
         {
             if(SameUser())
@@ -63,7 +63,7 @@ namespace WPF_Dusza.Pages
                 WindowUtils.DisplayErrorMessage("A szervezőt nem módosítottad!");
                 return;
             }
-            User ModifiedUser = _selectedUser with {Name = txtOrganizerName.Text, Password = txtOrganizerPassword.Text };
+            User ModifiedUser = _selectedUser with {Name = txtOrganizerName.Text, Password = txtOrganizerPassword.Password };
             Users[Users.IndexOf(_selectedUser)] = ModifiedUser;
         }
         void DeleteUser(object sender, RoutedEventArgs e)
@@ -96,7 +96,7 @@ namespace WPF_Dusza.Pages
             _selectedUser = (User)(sender as DataGrid)!.SelectedItem;
             if(_selectedUser == null) return;
             txtOrganizerName.Text = _selectedUser.Name;
-            txtOrganizerPassword.Text = _selectedUser.Password;
+            txtOrganizerPassword.Password = _selectedUser.Password;
         }
     }
 }
