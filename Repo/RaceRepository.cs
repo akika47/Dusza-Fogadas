@@ -12,6 +12,7 @@ namespace WPF_Dusza.Repo
         readonly EventRepo _eventRepo = new();
         readonly ResultRepo _resultRepo = new();
 
+
         public UserRepo UserRepository { get => _userRepo; }
         public GameRepo GameRepository { get => _gameRepo; }
         public BetRepo BetRepository { get => _betRepo; }
@@ -82,6 +83,7 @@ namespace WPF_Dusza.Repo
 
             cmd = "SELECT g.id, g.name, u.name AS organizer_name, g.status AS current_status FROM games g JOIN users u ON g.userId = u.id LEFT JOIN gameparticipants gp ON g.id = gp.gameId GROUP BY g.id, g.name, u.name;";
 
+
             using MySqlConnection conn = GetConnection();
             using MySqlCommand command = new(cmd, conn);
             await conn.OpenAsync();
@@ -98,6 +100,7 @@ namespace WPF_Dusza.Repo
                     Participants = await GetParticipantsAsync(gameId)
                 };
                 yield return game;
+
 
             }
         }
