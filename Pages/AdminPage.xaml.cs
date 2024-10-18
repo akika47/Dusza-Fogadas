@@ -55,7 +55,7 @@ namespace WPF_Dusza.Pages
 
         void AddUser(object sender, RoutedEventArgs e)
         {
-           if(SameUser())
+           if(SameUser() || _selectedUser is null)
             {
                 WindowUtils.DisplayErrorMessage("Ugyanazt a Szervezőt nem tudod hozzáadni");
                 return;

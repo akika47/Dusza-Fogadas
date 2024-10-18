@@ -17,15 +17,9 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Adatbázis: `betting`
---
+CREATE DATABASE betting;
 
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `bets`
---
+USE betting;
 
 CREATE TABLE `bets` (
   `id` int(11) NOT NULL,

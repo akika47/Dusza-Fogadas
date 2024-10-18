@@ -170,7 +170,7 @@ namespace WPF_Dusza.Repo
             command.Parameters.AddWithValue("@status", game.IsGameOver);
             await command.ExecuteNonQueryAsync();
             await AddNewEventsAsync(conn, events, game.Id);
-            await AddNewParticipantsAsync(conn, participants, game.Id);
+
         }
 
         async Task AddNewEventsAsync(MySqlConnection conn, List<Event> events, int gameId)
