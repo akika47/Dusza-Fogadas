@@ -220,7 +220,7 @@ namespace WPF_Dusza.Repo
         public async Task PlaceBetAsync(Bet bet)
         {
             string cmd = "INSERT INTO  bets(eventId,userId,participantId,prediction,betAmount) " +
-                " VALUES(@eventId,@userId, @participantId, @prediction, @betAmount)";
+                " VALUES(@eventId,@userId, @participantId, @prediciton, @betAmount)";
             using MySqlConnection conn = GetConnection();
             using MySqlCommand command = new(cmd, conn);
             await conn.OpenAsync();

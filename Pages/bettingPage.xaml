@@ -37,10 +37,11 @@
             <Label Content="{Binding SelectedGame.OrganizerName}" HorizontalAlignment="Center" 
                    VerticalAlignment="Center" FontSize="20" 
                    Style="{StaticResource LabelStyle}"/>
-            <ComboBox x:Name="cbxEvents" Width="200" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="10" Style="{StaticResource ComboBoxStyle}" SelectionChanged="SelectEvent">
+            <ComboBox x:Name="cbxEvents" Width="200" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="10" Style="{StaticResource ComboBoxStyle}">
                 <ComboBoxItem Content="Melyik eseményre fogadsz?" IsSelected="True" />
             </ComboBox>
-            <ComboBox x:Name="cbxParticipants" Width="200" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Style="{StaticResource ComboBoxStyle}" SelectionChanged="SelectParticipant">
+
+            <ComboBox x:Name="cbxParticipants" Width="200" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Style="{StaticResource ComboBoxStyle}">
                 <ComboBoxItem Content="Melyik játékosra fogadsz?" IsSelected="True" />
             </ComboBox>
 
@@ -56,7 +57,7 @@
                 </TextBox.ToolTip>
             </TextBox>
 
-            <Button x:Name="btnBet" Content="Fogadás" Height="60" Width="200" Margin="10" FontSize="20" Style="{StaticResource ButtonStyle}" Click="PlaceBet"/>
+            <Button x:Name="btnBet" Content="Fogadás" Height="60" Width="200" Margin="10" FontSize="20" Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
 
     </Grid>
